@@ -1,4 +1,4 @@
-# Museo-Palazzo-Venezia
+# Museo Palazzo Venezia
 
 ### An app made for the Palazzo Venezia Museum in Rome.
 
