@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/41/txt/en/Scalone Monumentale.txt" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/41/txt/es/Scalone Monumentale.txt" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/41/txt/it/Scalone Monumentale.txt" charset="UTF-16BE" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/42/txt/it/Pala processionale del maestro di staffolo.txt" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/43/txt/it/Croce lignea di scuola romana.txt" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/44/txt/it/Madonna con bambino.txt" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/45/txt/it/Compianto Cristo Morto.txt" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/46/txt/it/San Pietro Piangente.txt" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/47/txt/it/Lapidarium.txt" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/48/txt/it/La Fontana.txt" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/49/txt/en/Palazzo Venezia.txt" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/49/txt/es/Palazzo Venezia.txt" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/49/txt/it/Palazzo Venezia.txt" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/50/txt/it/Sala Altoviti.txt" charset="ISO-8859-1" />
+  </component>
+</project>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.matteolobello.palazzovenezia.ui.activity.IntroductionActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/introduction_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.pixelcan.inkpageindicator.InkPageIndicator
+                android:id="@+id/viewpager_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="16dp"
+                app:currentPageIndicatorColor="@android:color/white"
+                app:dotDiameter="8dp"
+                app:pageIndicatorColor="@android:color/darker_gray" />
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

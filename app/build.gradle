@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.matteolobello.palazzovenezia"
+        minSdkVersion 18
+        targetSdkVersion 25
+        versionCode 2
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    repositories {
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+}
+
+dependencies {
+    compile('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
+        transitive = true;
+    }
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.github.fafaldo:fab-toolbar:1.2.0'
+    compile 'com.github.alxrm:youtube-play-icon:0.9'
+    compile 'com.github.florent37:materialimageloading:1.0.2'
+    compile 'com.github.chrisbanes:PhotoView:2.0.0'
+    compile 'com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.2'
+    compile 'com.minimize.library:seekbar-compat:0.2.5'
+    compile 'com.pacioianu.david:ink-page-indicator:1.2.0'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+}

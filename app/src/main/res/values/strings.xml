@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Palazzo Venezia Museum</string>
+    <string name="welcome_intro_title">Welcome to\n Palazzo Venezia Museum</string>
+    <string name="welcome_intro_description">Please choose your language</string>
+    <string name="qrcode_intro_title">Scan QR Codes  to get information  about the painting</string>
+    <string name="enjoy_intro_title">Enjoy\n the museum!</string>
+    <string name="finish">Finish</string>
+    <string name="next">Next</string>
+    <string name="grant_permission">Grant permission</string>
+    <string name="permission_not_granted">Permission not granted</string>
+    <string name="map">Map</string>
+    <string name="change_language">Change language</string>
+    <string name="qr_code_not_valid">QR Code not valid!</string>
+    <string name="pause">Pause</string>
+    <string name="play">Play</string>
+    <string name="search">Search</string>
+    <string name="about_text">This app has been developed by a small group of young students of the ITC Vincenzo Arangio Ruiz</string>
+    <string name="about">About</string>
+    <string name="introduction">Introduction</string>
+
+    <string name="search_shortcut_title">Search</string>
+
+    <string name="english" translatable="false">English</string>
+    <string name="italiano" translatable="false">Italiano</string>
+    <string name="espanol" translatable="false">Español</string>
+</resources>

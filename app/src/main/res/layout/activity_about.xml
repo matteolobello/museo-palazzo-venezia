@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.matteolobello.palazzovenezia.ui.activity.AboutActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/about_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:text="@string/about_text"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="22sp" />
+
+            <RelativeLayout
+                android:id="@+id/matteo_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/about_text_view"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/profile_pic_matteo"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/matteo" />
+
+                <TextView
+                    android:id="@+id/name_surname_matteo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/profile_pic_matteo"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toEndOf="@+id/profile_pic_matteo"
+                    android:text="Matteo Lobello"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/role_matteo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_surname_matteo"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@id/profile_pic_matteo"
+                    android:text="Developer"
+                    android:textColor="@color/secondaryTextColor" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/andrea_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/matteo_wrapper"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/profile_pic_andrea"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/andrea" />
+
+                <TextView
+                    android:id="@+id/name_surname_andrea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/profile_pic_andrea"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toEndOf="@+id/profile_pic_andrea"
+                    android:text="Andrea Carosio"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/role_andrea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_surname_andrea"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@id/profile_pic_andrea"
+                    android:text="Audio Editor"
+                    android:textColor="@color/secondaryTextColor" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/alessandro_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/andrea_wrapper"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/profile_pic_alessandro"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/alessandro" />
+
+                <TextView
+                    android:id="@+id/name_surname_alessandro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/profile_pic_alessandro"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toEndOf="@+id/profile_pic_alessandro"
+                    android:text="Alessandro Currenti"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/role_alessandro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_surname_alessandro"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@id/profile_pic_alessandro"
+                    android:text="UI Helper"
+                    android:textColor="@color/secondaryTextColor" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/federico_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/alessandro_wrapper"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/profile_pic_federico"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/federico" />
+
+                <TextView
+                    android:id="@+id/name_surname_federico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/profile_pic_federico"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toEndOf="@+id/profile_pic_federico"
+                    android:text="Federico Fiorio"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/role_federico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_surname_federico"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@id/profile_pic_federico"
+                    android:text="Audio Assistant"
+                    android:textColor="@color/secondaryTextColor" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rolando_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/federico_wrapper"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/profile_pic_rolando"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/rolando" />
+
+                <TextView
+                    android:id="@+id/name_surname_rolando"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/profile_pic_rolando"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toEndOf="@+id/profile_pic_rolando"
+                    android:text="Rolando Gonzalez"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/role_rolando"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_surname_rolando"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@id/profile_pic_rolando"
+                    android:text="Media Assistant"
+                    android:textColor="@color/secondaryTextColor" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/leonardo_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/rolando_wrapper"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/profile_pic_leonardo"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/leonardo" />
+
+                <TextView
+                    android:id="@+id/name_surname_leonardo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/profile_pic_leonardo"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toEndOf="@+id/profile_pic_leonardo"
+                    android:text="Leonardo Lancellotti"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/role_leonardo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_surname_leonardo"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@id/profile_pic_leonardo"
+                    android:text="File Manager"
+                    android:textColor="@color/secondaryTextColor" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
