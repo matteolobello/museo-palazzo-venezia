@@ -48,7 +48,7 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
         paintingImageView.setColorFilter(Color.rgb(123, 123, 123), PorterDuff.Mode.MULTIPLY);
         AssetImageSetter.setImageByPaintingId(paintingImageView, painting.getId());
 
-        paintingTextView.setText(painting.getName().replace("_", " "));
+        paintingTextView.setText(painting.getName());
 
         paintingImageView.setOnClickListener(new View.OnClickListener() {
             @Override

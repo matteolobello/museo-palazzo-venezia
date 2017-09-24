@@ -123,7 +123,7 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
 
         mSoundManager = AssetSoundManager.get();
 
-        mToolbar.setTitle(mPainting.getName().replace("_", " "));
+        mToolbar.setTitle(mPainting.getName());
         setSupportActionBar(mToolbar);
 
         final ActionBar actionBar = getSupportActionBar();
