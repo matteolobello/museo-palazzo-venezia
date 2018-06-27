@@ -41,12 +41,16 @@ public class QRCodeFragment extends Fragment implements ZXingScannerView.ResultH
     }
 
     public void startCamera() {
-        mScannerView.setResultHandler(this);
-        mScannerView.startCamera();
+        if (mScannerView != null) {
+            mScannerView.setResultHandler(this);
+            mScannerView.startCamera();
+        }
     }
 
     public void stopCamera() {
-        mScannerView.stopCamera();
+        if (mScannerView != null) {
+            mScannerView.stopCamera();
+        }
     }
 
     @Override
