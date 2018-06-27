@@ -2,21 +2,18 @@ package com.matteolobello.palazzovenezia.ui.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetPaintingsGenerator;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.ui.adapter.viewpager.IntroductionViewPagerAdapter;
-import com.matteolobello.palazzovenezia.ui.fragment.QRCodeIntroductionFragment;
-import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
+import com.matteolobello.palazzovenezia.ui.fragment.introduction.QRCodeIntroductionFragment;
 import com.matteolobello.palazzovenezia.util.PermissionUtil;
+import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
 import com.rd.PageIndicatorView;
 
 import androidx.annotation.NonNull;
@@ -92,22 +89,6 @@ public class IntroductionActivity extends AppCompatActivity {
             } else {
                 qrCodeIntroductionFragment.setNextButton();
             }
-        }
-    }
-
-    public void overrideFonts(View view) {
-        try {
-            if (view instanceof ViewGroup) {
-                ViewGroup viewGroup = (ViewGroup) view;
-                for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                    View child = viewGroup.getChildAt(i);
-                    overrideFonts(child);
-                }
-            } else if (view instanceof TextView && !(view instanceof Button)) {
-                ((TextView) view).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Lobster-Regular.ttf"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

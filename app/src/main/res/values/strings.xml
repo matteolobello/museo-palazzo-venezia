@@ -17,6 +17,9 @@
     <string name="about_text">This app has been developed by a small group of young students of the ITC Vincenzo Arangio Ruiz</string>
     <string name="about">About</string>
     <string name="introduction">Introduction</string>
-
     <string name="search_shortcut_title">Search</string>
+    <string name="home">Home</string>
+    <string name="scan">Scan</string>
+    <string name="search_description">Start searching for an artwork by tapping on \"Search\" and entering the name of it</string>
+    <string name="home_title">Palazzo Venezia\nMuseum</string>
 </resources>

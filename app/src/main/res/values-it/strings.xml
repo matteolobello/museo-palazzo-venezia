@@ -15,8 +15,12 @@
     <string name="pause">Pausa</string>
     <string name="play">Play</string>
     <string name="search">Cerca</string>
-    <string name="about">Informazioni</string>
-    <string name="about_text">Questa applicazione è strata sviluppata da un piccolo gruppo di giovani studenti dell\'ITC Vincenzo Arangio Ruiz</string>
+    <string name="about">Info</string>
+    <string name="about_text">Questa applicazione è stata sviluppata da un piccolo gruppo di giovani studenti dell\'ITC Vincenzo Arangio Ruiz</string>
     <string name="introduction">Introduzione</string>
     <string name="search_shortcut_title">Cerca</string>
+    <string name="home">Home</string>
+    <string name="scan">Scan</string>
+    <string name="search_description">Inizia la ricerca di un\'opera d\'arte toccando su \"Cerca\" e poi inserendo il titolo</string>
+    <string name="home_title">Museo Palazzo\nVenezia</string>
 </resources>

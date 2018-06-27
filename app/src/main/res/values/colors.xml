@@ -5,7 +5,10 @@
     <color name="colorAccent">#FFC107</color>
     <color name="colorAccentDark">#FFA000</color>
 
-    <color name="launchScreenStatusBar">#D3D3D3</color>
+    <color name="launchScreenSystemBarsColor">#D3D3D3</color>
     <color name="primaryTextColor">#212121</color>
     <color name="secondaryTextColor">#757575</color>
+    <color name="spaceNavigationActiveItemColor">#FFFFFF</color>
+    <color name="spaceNavigationInactiveItemColor">#F0F0F0</color>
+    <color name="systemBarsWhitePreM">#D3D3D3</color>
 </resources>

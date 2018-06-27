@@ -3,7 +3,7 @@
 
     <style name="LaunchScreenTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/launch_screen</item>
-        <item name="android:statusBarColor">@color/launchScreenStatusBar</item>
+        <item name="android:statusBarColor">@color/launchScreenSystemBarsColor</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 

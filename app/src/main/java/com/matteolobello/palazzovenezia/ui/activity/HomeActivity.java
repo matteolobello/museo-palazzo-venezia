@@ -1,90 +1,105 @@
 package com.matteolobello.palazzovenezia.ui.activity;
 
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.matteolobello.palazzovenezia.R;
-import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
-import com.matteolobello.palazzovenezia.data.model.Painting;
-import com.matteolobello.palazzovenezia.data.preference.PreferenceHandler;
-import com.matteolobello.palazzovenezia.data.transition.TransitionNames;
-import com.matteolobello.palazzovenezia.ui.adapter.recyclerview.PaintingsRecyclerViewAdapter;
-import com.matteolobello.palazzovenezia.util.ScrollUtil;
+import com.matteolobello.palazzovenezia.ui.adapter.viewpager.HomeViewPagerAdapter;
+import com.matteolobello.palazzovenezia.ui.fragment.home.QRCodeFragment;
 import com.matteolobello.palazzovenezia.util.PermissionUtil;
+import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
-    private RecyclerView mRecyclerView;
-    private FloatingActionButton mQRCodeScanFab;
+    private ViewPager mViewPager;
+    private BottomNavigationView mBottomNavigationView;
 
-    private PreferenceHandler mPreferenceHandler;
+    private HomeViewPagerAdapter mViewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        mToolbar = findViewById(R.id.toolbar);
-        mRecyclerView = findViewById(R.id.paintings_recycler_view);
-        mQRCodeScanFab = findViewById(R.id.qr_code_scan_fab);
+        SystemBarsUtil.setNavigationBarColor(this, ContextCompat.getColor(this, android.R.color.white), false);
+        SystemBarsUtil.setStatusBarColor(this, ContextCompat.getColor(this, android.R.color.white), false);
 
-        mPreferenceHandler = PreferenceHandler.get();
-
-        setSupportActionBar(mToolbar);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mQRCodeScanFab.setTransitionName(TransitionNames.FAB);
+        if (!SystemBarsUtil.hasNavigationBar(this)) {
+            findViewById(R.id.navigation_bar_divider).setVisibility(View.GONE);
         }
 
-        mQRCodeScanFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!PermissionUtil.hasPermissions(getApplicationContext())) {
-                    ActivityCompat.requestPermissions(HomeActivity.this, PermissionUtil.PERMISSIONS, PermissionUtil.CAMERA_PERMISSIONS_REQUEST_CODE);
+        mViewPager = findViewById(R.id.home_view_pager);
+        mBottomNavigationView = findViewById(R.id.bottom_navigation_view);
 
-                    return;
+        mViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager());
+
+        mViewPager.setAdapter(mViewPagerAdapter);
+        mViewPager.setOffscreenPageLimit(mViewPagerAdapter.getCount());
+
+        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int index = 0;
+                switch (menuItem.getItemId()) {
+                    case R.id.action_home:
+                        index = 0;
+                        break;
+                    case R.id.action_search:
+                        index = 1;
+                        break;
+                    case R.id.action_scan:
+                        index = 2;
+                        break;
+                    case R.id.action_map:
+                        index = 3;
+                        break;
+                    case R.id.action_about:
+                        index = 4;
+                        break;
                 }
 
-                Intent intent = new Intent(getApplicationContext(), QRCodeScanActivity.class);
-                ActivityOptionsCompat options = ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(HomeActivity.this, mQRCodeScanFab, TransitionNames.FAB);
-                startActivity(intent, options.toBundle());
-            }
-        });
+                mViewPager.setCurrentItem(index, false);
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
-        mRecyclerView.setAdapter(new PaintingsRecyclerViewAdapter(
-                getIntent().<Painting>getParcelableArrayListExtra(BundleKeys.EXTRA_ALL_PAINTINGS)));
+                if (index == 2) {
+                    if (!PermissionUtil.hasPermissions(getApplicationContext())) {
+                        ActivityCompat.requestPermissions(HomeActivity.this, PermissionUtil.PERMISSIONS, PermissionUtil.CAMERA_PERMISSIONS_REQUEST_CODE);
+                        return false;
+                    }
 
-        ScrollUtil.setOnScrollListener(mRecyclerView, new ScrollUtil.OnScrollListener() {
-            @Override
-            public void onScroll(@ScrollUtil.ScrollDirection int scrollDirection) {
-                if (scrollDirection == ScrollUtil.UP) {
-                    mQRCodeScanFab.show();
+                    ((QRCodeFragment) mViewPagerAdapter.getFragmentByClass(QRCodeFragment.class)).startCamera();
                 } else {
-                    mQRCodeScanFab.hide();
+                    ((QRCodeFragment) mViewPagerAdapter.getFragmentByClass(QRCodeFragment.class)).stopCamera();
                 }
+
+                return true;
             }
         });
+    }
 
-        invalidateOptionsMenu();
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        ((QRCodeFragment) mViewPagerAdapter.getFragmentByClass(QRCodeFragment.class)).stopCamera();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mViewPager.getCurrentItem() == 2) {
+            ((QRCodeFragment) mViewPagerAdapter.getFragmentByClass(QRCodeFragment.class)).startCamera();
+        }
     }
 
     @Override
@@ -102,37 +117,36 @@ public class HomeActivity extends AppCompatActivity {
             }
 
             if (permissionsGranted) {
-                Intent intent = new Intent(getApplicationContext(), QRCodeScanActivity.class);
-                ActivityOptionsCompat options = ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(HomeActivity.this, mQRCodeScanFab, TransitionNames.FAB);
-                startActivity(intent, options.toBundle());
+                changeTabSelection(2);
             } else {
+                changeTabSelection(0);
                 Toast.makeText(this, R.string.permission_not_granted, Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+    private void changeTabSelection(int index) {
+        mViewPager.setCurrentItem(index, false);
 
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_map:
-                startActivity(new Intent(getApplicationContext(), FullscreenPaintingActivity.class).putExtra(BundleKeys.EXTRA_MAP, true));
+        int tabItemId = R.id.action_home;
+        switch (index) {
+            case 0:
+                tabItemId = R.id.action_home;
                 break;
-            case R.id.action_about:
-                startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+            case 1:
+                tabItemId = R.id.action_search;
                 break;
-            case R.id.action_search:
-                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+            case 2:
+                tabItemId = R.id.action_scan;
+                break;
+            case 3:
+                tabItemId = R.id.action_map;
+                break;
+            case 4:
+                tabItemId = R.id.action_about;
                 break;
         }
 
-        return super.onOptionsItemSelected(item);
+        mBottomNavigationView.setSelectedItemId(tabItemId);
     }
 }

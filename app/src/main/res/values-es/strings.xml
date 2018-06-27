@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Museo Palazzo Venezia</string>
-    <string name="about">Información</string>
+    <string name="about">Info</string>
     <string name="about_text">Esta aplicación ha sido desarrollada por un pequeño grupo de jóvenes estudiantes de la CCI Vincenzo Arangio Ruiz</string>
     <string name="change_language">Cambio de idioma</string>
     <string name="enjoy_intro_title">Buena visita!</string>
@@ -19,4 +19,8 @@
     <string name="welcome_intro_description">Esta aplicación te ayudará a visitar el museo</string>
     <string name="introduction">Introdución</string>
     <string name="search_shortcut_title">Busca</string>
+    <string name="home">Home</string>
+    <string name="scan">Scan</string>
+    <string name="search_description">Comience a buscar una obra de arte tocando \"Buscar\" e ingresando el nombre de la misma</string>
+    <string name="home_title">Museo Palazzo\nVenezia</string>
 </resources>

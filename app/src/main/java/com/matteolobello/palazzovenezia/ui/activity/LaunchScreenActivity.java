@@ -22,7 +22,7 @@ public class LaunchScreenActivity extends AppCompatActivity {
         PreferenceHandler preferenceHandler = PreferenceHandler.get();
 
         String booleanStringValue = preferenceHandler.getValue(this, PreferenceHandler.LAUNCH_INTRODUCTION_KEY);
-        if (booleanStringValue == null || true) {
+        if (booleanStringValue == null) {
             preferenceHandler.setValue(this, PreferenceHandler.LAUNCH_INTRODUCTION_KEY, "false");
 
             classToLaunch = IntroductionActivity.class;

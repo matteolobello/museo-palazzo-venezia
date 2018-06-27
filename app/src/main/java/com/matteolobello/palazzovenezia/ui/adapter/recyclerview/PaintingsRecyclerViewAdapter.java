@@ -45,10 +45,6 @@ public class PaintingsRecyclerViewAdapter extends RecyclerView.Adapter<Paintings
 
         AssetImageSetter.setImageByPaintingId(paintingImageView, painting.getId());
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            paintingImageView.setTransitionName(TransitionNames.PAINTING);
-        }
-
         MaterialImageLoading.animate(paintingImageView).setDuration(position * 300).start();
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -1,9 +1,11 @@
-package com.matteolobello.palazzovenezia.ui.activity;
+package com.matteolobello.palazzovenezia.ui.fragment.home;
 
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,43 +16,37 @@ import com.matteolobello.palazzovenezia.ui.adapter.recyclerview.SearchRecyclerVi
 
 import java.lang.reflect.Field;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchFragment extends Fragment {
 
-    private View mToolbarBackImageView;
     private View mSearchContainer;
     private EditText mSearchEditText;
     private ImageView mSearchClearImageView;
     private RecyclerView mSearchRecyclerView;
+    private View mEmptyResultView;
 
     private SearchRecyclerViewAdapter mSearchAdapter;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_search, container, false);
+    }
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        mToolbarBackImageView = findViewById(R.id.toolbar_back);
-        mSearchContainer = findViewById(R.id.search_container);
-        mSearchEditText = findViewById(R.id.search_view);
-        mSearchClearImageView = findViewById(R.id.search_clear);
-        mSearchRecyclerView = findViewById(R.id.search_rv);
-
-        mToolbarBackImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+        mSearchContainer = view.findViewById(R.id.search_container);
+        mSearchEditText = view.findViewById(R.id.search_view);
+        mSearchClearImageView = view.findViewById(R.id.search_clear);
+        mSearchRecyclerView = view.findViewById(R.id.search_rv);
+        mEmptyResultView = view.findViewById(R.id.empty_result_wrapper);
 
         setupSearchView();
         setupRecyclerView();
@@ -61,9 +57,9 @@ public class SearchActivity extends AppCompatActivity {
             // Set cursor colour to white
             // http://stackoverflow.com/a/26544231/1692770
             // https://github.com/android/platform_frameworks_base/blob/kitkat-release/core/java/android/widget/TextView.java#L562-564
-            Field f = TextView.class.getDeclaredField("mCursorDrawableRes");
-            f.setAccessible(true);
-            f.set(mSearchEditText, R.drawable.white_cursor);
+            Field field = TextView.class.getDeclaredField("mCursorDrawableRes");
+            field.setAccessible(true);
+            field.set(mSearchEditText, R.drawable.white_cursor);
         } catch (Exception ignored) {
         }
 
@@ -74,7 +70,13 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mSearchAdapter.searchPainting(s.toString());
+                if (mSearchAdapter.searchPainting(s.toString()) > 0) {
+                    mSearchRecyclerView.setVisibility(View.VISIBLE);
+                    mEmptyResultView.setVisibility(View.GONE);
+                } else {
+                    mSearchRecyclerView.setVisibility(View.GONE);
+                    mEmptyResultView.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -86,14 +88,17 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mSearchEditText.setText("");
+
+                mSearchRecyclerView.setVisibility(View.GONE);
+                mEmptyResultView.setVisibility(View.VISIBLE);
             }
         });
     }
 
     private void setupRecyclerView() {
-        mSearchRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        mSearchRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mSearchAdapter = new SearchRecyclerViewAdapter(AssetPaintingsGenerator.generatePaintings(this));
+        mSearchAdapter = new SearchRecyclerViewAdapter(AssetPaintingsGenerator.generatePaintings(getContext()));
         mSearchRecyclerView.setAdapter(mSearchAdapter);
     }
 }

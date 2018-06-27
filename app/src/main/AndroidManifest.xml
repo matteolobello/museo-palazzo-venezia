@@ -32,9 +32,6 @@
         <activity
             android:name="com.matteolobello.palazzovenezia.ui.activity.PaintingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.matteolobello.palazzovenezia.ui.activity.QRCodeScanActivity" />
-        <activity android:name="com.matteolobello.palazzovenezia.ui.activity.SearchActivity" />
-        <activity android:name="com.matteolobello.palazzovenezia.ui.activity.AboutActivity" />
         <activity
             android:name="com.matteolobello.palazzovenezia.ui.activity.FullscreenPaintingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />

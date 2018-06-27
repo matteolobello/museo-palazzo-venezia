@@ -69,13 +69,13 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
         return mPaintingArrayList.size();
     }
 
-    public void searchPainting(String query) {
+    public int searchPainting(String query) {
         mPaintingArrayList.clear();
 
         if (TextUtils.isEmpty(query)) {
             notifyDataSetChanged();
 
-            return;
+            return 0;
         }
 
         ArrayList<Painting> paintingsFound = new ArrayList<>();
@@ -89,6 +89,8 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
         mPaintingArrayList.addAll(paintingsFound);
 
         notifyDataSetChanged();
+
+        return paintingsFound.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

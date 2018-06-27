@@ -23,22 +23,18 @@ public class FullscreenPaintingActivity extends AppCompatActivity {
 
         mPaintingView = findViewById(R.id.painting_image_view);
 
-        if (!getIntent().getBooleanExtra(BundleKeys.EXTRA_MAP, false)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mPaintingView.setTransitionName(TransitionNames.PAINTING);
-            }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mPaintingView.setTransitionName(TransitionNames.PAINTING);
+        }
 
-            Bundle extras = getIntent().getExtras();
-            if (extras == null) {
-                return;
-            }
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+            return;
+        }
 
-            String paintingPath = extras.getString(BundleKeys.EXTRA_PAINTING_PATH);
-            if (paintingPath != null) {
-                mPaintingView.setImageResource(AssetImageSetter.getImageResByName(this, paintingPath));
-            }
-        } else {
-            mPaintingView.setImageResource(R.drawable.map);
+        String paintingPath = extras.getString(BundleKeys.EXTRA_PAINTING_PATH);
+        if (paintingPath != null) {
+            mPaintingView.setImageResource(AssetImageSetter.getImageResByName(this, paintingPath));
         }
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,9 +32,9 @@ import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
 import com.matteolobello.palazzovenezia.data.service.AppRemovedFromRecentAppsListDetectorService;
 import com.matteolobello.palazzovenezia.data.transition.TransitionNames;
+import com.matteolobello.palazzovenezia.util.DpPxUtil;
 import com.matteolobello.palazzovenezia.util.ScrollUtil;
 import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
-import com.matteolobello.palazzovenezia.util.DpPxUtil;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +43,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.widget.NestedScrollView;
 import app.minimize.com.seek_bar_compat.SeekBarCompat;
 import rm.com.youtubeplayicon.PlayIconDrawable;
@@ -113,6 +115,13 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_painting);
 
+        SystemBarsUtil.setFullyTransparentStatusBar(this);
+        SystemBarsUtil.setNavigationBarColor(this, ContextCompat.getColor(this, android.R.color.white), false);
+
+        if (!SystemBarsUtil.hasNavigationBar(this)) {
+            findViewById(R.id.navigation_bar_divider).setVisibility(View.GONE);
+        }
+
         mNestedScrollView = findViewById(R.id.nested_scroll_view);
         mPaintingImageView = findViewById(R.id.painting_image_view);
         mHeadsetFab = findViewById(R.id.fabtoolbar_fab);
@@ -123,8 +132,6 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
         mPlayIconView = findViewById(R.id.play_pause);
         mSeekBar = findViewById(R.id.seek_bar);
         mFabToolbarLayout = findViewById(R.id.fab_toolbar);
-
-        SystemBarsUtil.setFullyTransparentStatusBar(this);
 
         mServiceIntent = new Intent(getApplicationContext(), AppRemovedFromRecentAppsListDetectorService.class);
 
@@ -138,6 +145,10 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
         mToolbar.setTitle(mPainting.getName());
         setSupportActionBar(mToolbar);
 
+        Typeface font = ResourcesCompat.getFont(this, R.font.radnika);
+        mCollapsingToolbarLayout.setCollapsedTitleTypeface(font);
+        mCollapsingToolbarLayout.setExpandedTitleTypeface(font);
+
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -146,7 +157,6 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mPaintingImageView.setTransitionName(TransitionNames.PAINTING);
-            mHeadsetFab.setTransitionName(TransitionNames.FAB);
 
             ActivityManager.TaskDescription taskDescription =
                     new ActivityManager.TaskDescription(mPainting.getName(),
@@ -179,6 +189,13 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
                 SystemBarsUtil.setNavigationBarColor(PaintingActivity.this,
                         ContextCompat.getColor(getApplicationContext(), R.color.colorAccentDark), true);
                 mFabToolbarLayout.show();
+
+                if (SystemBarsUtil.hasNavigationBar(PaintingActivity.this)) {
+                    findViewById(R.id.navigation_bar_divider).animate()
+                            .alpha(0f)
+                            .setDuration(250)
+                            .start();
+                }
 
                 changeNestedScrollViewPadding(DpPxUtil.convertDpToPixel(56 + 12));
             }
@@ -237,6 +254,7 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
 
     private void changeNestedScrollViewPadding(int newBottomPadding) {
         ValueAnimator valueAnimator = ValueAnimator.ofInt(mNestedScrollView.getPaddingBottom(), newBottomPadding);
+        valueAnimator.setDuration(250);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -300,9 +318,17 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
         if (mFabToolbarLayout.isToolbar()) {
             mFabToolbarLayout.hide();
 
-            changeNestedScrollViewPadding(DpPxUtil.convertDpToPixel(16));
+            changeNestedScrollViewPadding(0);
 
-            SystemBarsUtil.setNavigationBarColor(this, ContextCompat.getColor(getApplicationContext(), android.R.color.black), true);
+            SystemBarsUtil.setNavigationBarColor(PaintingActivity.this,
+                    ContextCompat.getColor(getApplicationContext(), android.R.color.white), true);
+
+            if (SystemBarsUtil.hasNavigationBar(this)) {
+                findViewById(R.id.navigation_bar_divider).animate()
+                        .alpha(0.12f)
+                        .setDuration(200)
+                        .start();
+            }
 
             return;
         }

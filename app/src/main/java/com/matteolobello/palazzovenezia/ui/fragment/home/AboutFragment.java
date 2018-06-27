@@ -1,19 +1,19 @@
-package com.matteolobello.palazzovenezia.ui.activity;
+package com.matteolobello.palazzovenezia.ui.fragment.home;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
+import android.view.ViewGroup;
 
 import com.matteolobello.palazzovenezia.R;
-import com.matteolobello.palazzovenezia.data.preference.PreferenceHandler;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-public class AboutActivity extends AppCompatActivity implements View.OnClickListener {
+public class AboutFragment extends Fragment implements View.OnClickListener {
 
     private static final String MATTEO_LINK = "https://www.matteolobello.com";
     private static final String ANDREA_LINK = "https://www.instagram.com/alpaca_furioso";
@@ -22,40 +22,22 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
     private static final String ROLANDO_LINK = "https://www.facebook.com/RoyanOfficial";
     private static final String LEONARDO_LINK = "https://www.instagram.com/leolance";
 
-    private TextView mAboutTextView;
-
-    private PreferenceHandler mPreferenceHandler;
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
-
-        mAboutTextView = findViewById(R.id.about_text_view);
-
-        mPreferenceHandler = PreferenceHandler.get();
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(true);
-        }
-
-        findViewById(R.id.matteo_wrapper).setOnClickListener(this);
-        findViewById(R.id.andrea_wrapper).setOnClickListener(this);
-        findViewById(R.id.alessandro_wrapper).setOnClickListener(this);
-        findViewById(R.id.federico_wrapper).setOnClickListener(this);
-        findViewById(R.id.rolando_wrapper).setOnClickListener(this);
-        findViewById(R.id.leonardo_wrapper).setOnClickListener(this);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_about, container, false);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            super.onBackPressed();
-        }
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        return super.onOptionsItemSelected(item);
+        view.findViewById(R.id.matteo_wrapper).setOnClickListener(this);
+        view.findViewById(R.id.andrea_wrapper).setOnClickListener(this);
+        view.findViewById(R.id.alessandro_wrapper).setOnClickListener(this);
+        view.findViewById(R.id.federico_wrapper).setOnClickListener(this);
+        view.findViewById(R.id.rolando_wrapper).setOnClickListener(this);
+        view.findViewById(R.id.leonardo_wrapper).setOnClickListener(this);
     }
 
     @Override
