@@ -27,7 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp" />
+            android:layout_marginEnd="4dp"
+            android:clipToPadding="false"
+            android:paddingBottom="4dp" />
 
     </LinearLayout>
 

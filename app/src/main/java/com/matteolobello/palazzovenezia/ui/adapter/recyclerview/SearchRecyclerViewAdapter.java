@@ -52,7 +52,7 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
 
         paintingTextView.setText(painting.getName());
 
-        paintingImageView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Intent intent = new Intent(activity, PaintingActivity.class);

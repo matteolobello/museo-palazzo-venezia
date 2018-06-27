@@ -3,7 +3,6 @@ package com.matteolobello.palazzovenezia.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetPaintingsGenerator;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.preference.PreferenceHandler;
@@ -15,7 +14,6 @@ public class LaunchScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launch_screen);
 
         Class classToLaunch = HomeActivity.class;
 

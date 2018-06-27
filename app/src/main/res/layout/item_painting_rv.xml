@@ -3,13 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="4dp"
     android:foreground="@drawable/selectable_item_background"
     android:orientation="vertical"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="0dp"
     app:cardElevation="2dp">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/painting_image_view"
         android:layout_width="match_parent"
         android:layout_height="142dp"

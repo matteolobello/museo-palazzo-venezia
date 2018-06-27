@@ -3,6 +3,7 @@ package com.matteolobello.palazzovenezia.util;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
@@ -19,6 +20,7 @@ public class SystemBarsUtil {
     }
 
     public static void setFullyTransparentSystemBars(Activity activity, boolean navBarToo) {
+        setStatusBarColor(activity, Color.TRANSPARENT, false);
         setWindowFlag(activity, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
         if (navBarToo) {
             setWindowFlag(activity, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, true);

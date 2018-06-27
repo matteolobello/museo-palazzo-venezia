@@ -1,10 +1,12 @@
 package com.matteolobello.palazzovenezia.ui.fragment.home;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
@@ -25,6 +27,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class QRCodeFragment extends Fragment implements ZXingScannerView.ResultHandler {
 
+    private View mRootView;
     private ZXingScannerView mScannerView;
 
     @Nullable
@@ -37,20 +40,49 @@ public class QRCodeFragment extends Fragment implements ZXingScannerView.ResultH
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mScannerView = view.findViewById(R.id.qr_decoder_view);
+        mRootView = view;
+        mScannerView = new ZXingScannerView(getContext());
+        ((FrameLayout) view).addView(mScannerView);
     }
 
     public void startCamera() {
-        if (mScannerView != null) {
-            mScannerView.setResultHandler(this);
-            mScannerView.startCamera();
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (mScannerView != null) {
+                    try {
+                        mScannerView.setResultHandler(QRCodeFragment.this);
+                        mScannerView.startCamera();
+                    } catch (Exception ignored) {
+                    }
+                } else {
+                    Activity activity = getActivity();
+                    if (activity != null) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                onViewCreated(mRootView, null);
+                                startCamera();
+                            }
+                        });
+                    }
+                }
+            }
+        }).start();
     }
 
     public void stopCamera() {
-        if (mScannerView != null) {
-            mScannerView.stopCamera();
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (mScannerView != null) {
+                    try {
+                        mScannerView.stopCamera();
+                    } catch (Exception ignored) {
+                    }
+                }
+            }
+        }).start();
     }
 
     @Override

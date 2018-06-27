@@ -6,7 +6,8 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/ic_launcher_512" />
+            android:src="@drawable/launch_screen_foreground"
+            android:tint="@android:color/black" />
     </item>
 
 </layer-list>

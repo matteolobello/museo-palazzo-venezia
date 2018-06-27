@@ -35,8 +35,9 @@ public class PaintingsFragment extends Fragment {
         mTitleTextView = view.findViewById(R.id.paintings_title_text_view);
         mRecyclerView = view.findViewById(R.id.paintings_recycler_view);
 
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setAdapter(new PaintingsRecyclerViewAdapter(
                 getActivity().getIntent().<Painting>getParcelableArrayListExtra(BundleKeys.EXTRA_ALL_PAINTINGS)));
     }
