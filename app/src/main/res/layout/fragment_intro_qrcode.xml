@@ -22,7 +22,7 @@
         android:textColor="@android:color/white"
         android:textSize="32sp" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/intro_button"
         android:layout_width="126dp"
         android:layout_height="wrap_content"

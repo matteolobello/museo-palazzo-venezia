@@ -16,7 +16,7 @@
     <string name="search">Busca</string>
     <string name="qrcode_intro_title">Escána QR Code\n para traer informacciones sobre la obra</string>
     <string name="welcome_intro_title">Bienvenido en el Museo Palazzo Venezia</string>
-    <string name="welcome_intro_description">Por favor selecciona tu idioma</string>
+    <string name="welcome_intro_description">Esta aplicación te ayudará a visitar el museo</string>
     <string name="introduction">Introdución</string>
     <string name="search_shortcut_title">Busca</string>
 </resources>

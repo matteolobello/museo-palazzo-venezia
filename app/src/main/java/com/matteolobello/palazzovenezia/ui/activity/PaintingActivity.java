@@ -3,6 +3,8 @@ package com.matteolobello.palazzovenezia.ui.activity;
 import android.animation.ValueAnimator;
 import android.app.ActivityManager;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,16 +15,6 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,24 +22,35 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import com.matteolobello.palazzovenezia.data.asset.AssetSoundManager;
+import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
 import com.matteolobello.palazzovenezia.data.service.AppRemovedFromRecentAppsListDetectorService;
-import com.matteolobello.palazzovenezia.ui.scroll.ScrollHandler;
-import com.matteolobello.palazzovenezia.ui.systembar.SystemBars;
+import com.matteolobello.palazzovenezia.data.transition.TransitionNames;
+import com.matteolobello.palazzovenezia.util.ScrollUtil;
+import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
 import com.matteolobello.palazzovenezia.util.DpPxUtil;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import app.minimize.com.seek_bar_compat.SeekBarCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import rm.com.youtubeplayicon.PlayIconDrawable;
 import rm.com.youtubeplayicon.PlayIconView;
 
 public class PaintingActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener {
 
     private static final int NOTIFICATION_ID = 340;
+    private static final String NOTIFICATION_CHANNEL = "channel_01";
 
     private static final IntentFilter RECEIVER_INTENT_FILTER
             = new IntentFilter(PaintingActivity.class.getPackage() + ".TOGGLE_AUDIO");
@@ -58,16 +61,16 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
 
     private final Runnable mEverySecondRunnable = new EverySecondRunnable();
 
-    @BindView(R.id.nested_scroll_view)             protected NestedScrollView        mNestedScrollView;
-    @BindView(R.id.painting_image_view)            protected ImageView               mPaintingImageView;
-    @BindView(R.id.fabtoolbar_fab)                 protected FloatingActionButton    mHeadsetFab;
-    @BindView(R.id.fabtoolbar_toolbar)             protected View                    mFabToolbar;
-    @BindView(R.id.toolbar)                        protected Toolbar                 mToolbar;
-    @BindView(R.id.toolbar_layout)                 protected CollapsingToolbarLayout mCollapsingToolbarLayout;
-    @BindView(R.id.painting_description_text_view) protected TextView                mDescriptionTextView;
-    @BindView(R.id.play_pause)                     protected PlayIconView            mPlayIconView;
-    @BindView(R.id.seek_bar)                       protected SeekBarCompat           mSeekBar;
-    @BindView(R.id.fab_toolbar)                    protected FABToolbarLayout        mFabToolbarLayout;
+    private NestedScrollView mNestedScrollView;
+    private ImageView mPaintingImageView;
+    private FloatingActionButton mHeadsetFab;
+    private View mFabToolbar;
+    private Toolbar mToolbar;
+    private CollapsingToolbarLayout mCollapsingToolbarLayout;
+    private TextView mDescriptionTextView;
+    private PlayIconView mPlayIconView;
+    private SeekBarCompat mSeekBar;
+    private FABToolbarLayout mFabToolbarLayout;
 
     private Intent mServiceIntent;
 
@@ -110,16 +113,25 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_painting);
 
-        ButterKnife.bind(this);
+        mNestedScrollView = findViewById(R.id.nested_scroll_view);
+        mPaintingImageView = findViewById(R.id.painting_image_view);
+        mHeadsetFab = findViewById(R.id.fabtoolbar_fab);
+        mFabToolbar = findViewById(R.id.fabtoolbar_toolbar);
+        mToolbar = findViewById(R.id.toolbar);
+        mCollapsingToolbarLayout = findViewById(R.id.toolbar_layout);
+        mDescriptionTextView = findViewById(R.id.painting_description_text_view);
+        mPlayIconView = findViewById(R.id.play_pause);
+        mSeekBar = findViewById(R.id.seek_bar);
+        mFabToolbarLayout = findViewById(R.id.fab_toolbar);
 
-        SystemBars.setFullyTransparentStatusBar(this);
+        SystemBarsUtil.setFullyTransparentStatusBar(this);
 
         mServiceIntent = new Intent(getApplicationContext(), AppRemovedFromRecentAppsListDetectorService.class);
 
         registerReceiver(mPlayPauseNotificationActionReceiver, RECEIVER_INTENT_FILTER);
         startService(mServiceIntent);
 
-        mPainting = getIntent().getParcelableExtra("painting");
+        mPainting = getIntent().getParcelableExtra(BundleKeys.EXTRA_PAINTING);
 
         mSoundManager = AssetSoundManager.get();
 
@@ -133,8 +145,8 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mPaintingImageView.setTransitionName("painting");
-            mHeadsetFab.setTransitionName("fab");
+            mPaintingImageView.setTransitionName(TransitionNames.PAINTING);
+            mHeadsetFab.setTransitionName(TransitionNames.FAB);
 
             ActivityManager.TaskDescription taskDescription =
                     new ActivityManager.TaskDescription(mPainting.getName(),
@@ -148,9 +160,9 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FullscreenPaintingActivity.class);
-                intent.putExtra("painting_path", "img_" + mPainting.getId());
+                intent.putExtra(BundleKeys.EXTRA_PAINTING_PATH, "img_" + mPainting.getId());
                 ActivityOptionsCompat options = ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(PaintingActivity.this, view, "painting");
+                        .makeSceneTransitionAnimation(PaintingActivity.this, view, TransitionNames.PAINTING);
                 startActivity(intent, options.toBundle());
             }
         });
@@ -164,7 +176,7 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
                     return;
                 }
 
-                SystemBars.setNavigationBarColor(PaintingActivity.this,
+                SystemBarsUtil.setNavigationBarColor(PaintingActivity.this,
                         ContextCompat.getColor(getApplicationContext(), R.color.colorAccentDark), true);
                 mFabToolbarLayout.show();
 
@@ -209,10 +221,10 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
             }
         });
 
-        ScrollHandler.setOnScrollListener(mNestedScrollView, new ScrollHandler.OnScrollListener() {
+        ScrollUtil.setOnScrollListener(mNestedScrollView, new ScrollUtil.OnScrollListener() {
             @Override
-            public void onScroll(@ScrollHandler.ScrollDirection int scrollDirection) {
-                if (scrollDirection == ScrollHandler.UP) {
+            public void onScroll(@ScrollUtil.ScrollDirection int scrollDirection) {
+                if (scrollDirection == ScrollUtil.UP) {
                     mHeadsetFab.show();
                 } else {
                     mHeadsetFab.hide();
@@ -239,12 +251,20 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
     }
 
     private void handleNotification() {
-        Intent notificationIntent = new Intent(getApplicationContext(), PaintingActivity.class).putExtra("painting", mPainting);
+        Intent notificationIntent = new Intent(getApplicationContext(), PaintingActivity.class).putExtra(BundleKeys.EXTRA_PAINTING, mPainting);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 90, notificationIntent, 0);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL, getString(R.string.app_name), NotificationManager.IMPORTANCE_HIGH);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(notificationChannel);
+            }
+        }
+
         NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(getApplicationContext())
+                new NotificationCompat.Builder(getApplicationContext(), NOTIFICATION_CHANNEL)
                         .setOngoing(true)
                         .setSmallIcon(R.drawable.ic_headset)
                         .setContentTitle(mPainting.getName())
@@ -282,7 +302,7 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
 
             changeNestedScrollViewPadding(DpPxUtil.convertDpToPixel(16));
 
-            SystemBars.setNavigationBarColor(this, ContextCompat.getColor(getApplicationContext(), android.R.color.black), true);
+            SystemBarsUtil.setNavigationBarColor(this, ContextCompat.getColor(getApplicationContext(), android.R.color.black), true);
 
             return;
         }

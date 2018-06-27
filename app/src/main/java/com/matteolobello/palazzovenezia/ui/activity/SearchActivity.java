@@ -1,10 +1,6 @@
 package com.matteolobello.palazzovenezia.ui.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,22 +10,22 @@ import android.widget.TextView;
 
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetPaintingsGenerator;
-import com.matteolobello.palazzovenezia.data.preference.PreferenceHandler;
-import com.matteolobello.palazzovenezia.ui.adapter.SearchRecyclerViewAdapter;
-import com.matteolobello.palazzovenezia.util.LanguageUtil;
+import com.matteolobello.palazzovenezia.ui.adapter.recyclerview.SearchRecyclerViewAdapter;
 
 import java.lang.reflect.Field;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class SearchActivity extends AppCompatActivity {
 
-    @BindView(R.id.search_container) protected View         mSearchContainer;
-    @BindView(R.id.search_view)      protected EditText     mSearchEditText;
-    @BindView(R.id.search_clear)     protected ImageView    mSearchClearImageView;
-    @BindView(R.id.search_rv)        protected RecyclerView mSearchRecyclerView;
+    private View mToolbarBackImageView;
+    private View mSearchContainer;
+    private EditText mSearchEditText;
+    private ImageView mSearchClearImageView;
+    private RecyclerView mSearchRecyclerView;
 
     private SearchRecyclerViewAdapter mSearchAdapter;
 
@@ -43,15 +39,21 @@ public class SearchActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
-        ButterKnife.bind(this);
+        mToolbarBackImageView = findViewById(R.id.toolbar_back);
+        mSearchContainer = findViewById(R.id.search_container);
+        mSearchEditText = findViewById(R.id.search_view);
+        mSearchClearImageView = findViewById(R.id.search_clear);
+        mSearchRecyclerView = findViewById(R.id.search_rv);
+
+        mToolbarBackImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         setupSearchView();
         setupRecyclerView();
-    }
-
-    @OnClick(R.id.toolbar_back)
-    protected void onBackArrowClick() {
-        finish();
     }
 
     private void setupSearchView() {
@@ -64,9 +66,6 @@ public class SearchActivity extends AppCompatActivity {
             f.set(mSearchEditText, R.drawable.white_cursor);
         } catch (Exception ignored) {
         }
-
-        mSearchEditText.setHint(LanguageUtil.getStringByLocale(this, R.string.search,
-                PreferenceHandler.get().getValue(this, PreferenceHandler.LANGUAGE_KEY)));
 
         mSearchEditText.addTextChangedListener(new TextWatcher() {
             @Override

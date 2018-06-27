@@ -3,8 +3,8 @@ package com.matteolobello.palazzovenezia.data.service;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationManagerCompat;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationManagerCompat;
 
 public class AppRemovedFromRecentAppsListDetectorService extends Service {
 

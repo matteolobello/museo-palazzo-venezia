@@ -2,11 +2,13 @@ package com.matteolobello.palazzovenezia.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetPaintingsGenerator;
+import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.preference.PreferenceHandler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LaunchScreenActivity extends AppCompatActivity {
 
@@ -20,7 +22,7 @@ public class LaunchScreenActivity extends AppCompatActivity {
         PreferenceHandler preferenceHandler = PreferenceHandler.get();
 
         String booleanStringValue = preferenceHandler.getValue(this, PreferenceHandler.LAUNCH_INTRODUCTION_KEY);
-        if (booleanStringValue == null) {
+        if (booleanStringValue == null || true) {
             preferenceHandler.setValue(this, PreferenceHandler.LAUNCH_INTRODUCTION_KEY, "false");
 
             classToLaunch = IntroductionActivity.class;
@@ -28,7 +30,7 @@ public class LaunchScreenActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, classToLaunch);
         if (classToLaunch.getName().equals(HomeActivity.class.getName())) {
-            intent.putParcelableArrayListExtra("all_paintings",
+            intent.putParcelableArrayListExtra(BundleKeys.EXTRA_ALL_PAINTINGS,
                     AssetPaintingsGenerator.generatePaintings(getApplicationContext()));
         }
 

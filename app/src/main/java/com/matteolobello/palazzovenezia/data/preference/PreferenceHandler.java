@@ -3,14 +3,14 @@ package com.matteolobello.palazzovenezia.data.preference;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.StringDef;
+
+import androidx.annotation.StringDef;
 
 public class PreferenceHandler {
 
     public static final String LAUNCH_INTRODUCTION_KEY = "launch_introduction";
-    public static final String LANGUAGE_KEY = "language";
 
-    @StringDef({LAUNCH_INTRODUCTION_KEY, LANGUAGE_KEY})
+    @StringDef({LAUNCH_INTRODUCTION_KEY})
     public @interface PreferenceKey {
     }
 

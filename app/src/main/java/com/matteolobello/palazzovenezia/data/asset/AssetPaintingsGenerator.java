@@ -10,6 +10,7 @@ import com.matteolobello.palazzovenezia.data.qrcode.QRCodeScanning;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AssetPaintingsGenerator {
 
@@ -19,11 +20,7 @@ public class AssetPaintingsGenerator {
             AssetManager assets = context.getAssets();
             String[] ids = assets.list("");
 
-            String language = PreferenceHandler.get().getValue(context.getApplicationContext(), PreferenceHandler.LANGUAGE_KEY);
-            if (language == null) {
-                language = "en";
-                PreferenceHandler.get().setValue(context.getApplicationContext(), PreferenceHandler.LANGUAGE_KEY, "en");
-            }
+            String language = Locale.getDefault().getLanguage();
 
             for (String id : ids) {
                 if (!QRCodeScanning.isNumeric(id)) {

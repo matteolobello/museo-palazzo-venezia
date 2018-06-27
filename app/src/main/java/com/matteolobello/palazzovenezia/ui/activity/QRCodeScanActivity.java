@@ -4,32 +4,32 @@ import android.content.Intent;
 import android.graphics.PointF;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetFileReader;
+import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
 import com.matteolobello.palazzovenezia.data.preference.PreferenceHandler;
 import com.matteolobello.palazzovenezia.data.qrcode.QRCodeScanning;
-import com.matteolobello.palazzovenezia.util.LanguageUtil;
+import com.matteolobello.palazzovenezia.data.transition.TransitionNames;
 
 import java.io.File;
+import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 
 public class QRCodeScanActivity extends AppCompatActivity implements QRCodeReaderView.OnQRCodeReadListener {
 
     private static final long AUTO_FOCUS_INTERVAL = 2000;
 
-    @BindView(R.id.qr_decoder_view) protected QRCodeReaderView     mQRCodeReaderView;
-    @BindView(R.id.flash_fab)       protected FloatingActionButton mFlashFab;
+    private QRCodeReaderView mQRCodeReaderView;
+    private FloatingActionButton mFlashFab;
 
     private PreferenceHandler mPreferenceHandler;
 
@@ -42,7 +42,8 @@ public class QRCodeScanActivity extends AppCompatActivity implements QRCodeReade
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode_scan);
 
-        ButterKnife.bind(this);
+        mQRCodeReaderView = findViewById(R.id.qr_decoder_view);
+        mFlashFab = findViewById(R.id.flash_fab);
 
         mPreferenceHandler = PreferenceHandler.get();
 
@@ -52,7 +53,7 @@ public class QRCodeScanActivity extends AppCompatActivity implements QRCodeReade
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mFlashFab.setTransitionName("fab");
+            mFlashFab.setTransitionName(TransitionNames.FAB);
         }
 
         mQRCodeReaderView.setAutofocusInterval(AUTO_FOCUS_INTERVAL);
@@ -81,8 +82,7 @@ public class QRCodeScanActivity extends AppCompatActivity implements QRCodeReade
     @Override
     public void onQRCodeRead(String id, PointF[] points) {
         if (!QRCodeScanning.isQRCodeValid(getApplicationContext(), id)) {
-            Toast.makeText(this, LanguageUtil.getStringByLocale(this, R.string.qr_code_not_valid,
-                    mPreferenceHandler.getValue(this, PreferenceHandler.LANGUAGE_KEY)), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.qr_code_not_valid, Toast.LENGTH_SHORT).show();
 
             return;
         }
@@ -101,11 +101,7 @@ public class QRCodeScanActivity extends AppCompatActivity implements QRCodeReade
         Painting painting = new Painting();
 
         try {
-            String language = mPreferenceHandler.getValue(getApplicationContext(), PreferenceHandler.LANGUAGE_KEY);
-            if (language == null) {
-                language = "en";
-                mPreferenceHandler.setValue(getApplicationContext(), PreferenceHandler.LANGUAGE_KEY, "en");
-            }
+            String language = Locale.getDefault().getISO3Language();
 
             painting.setId(id);
 
@@ -124,9 +120,9 @@ public class QRCodeScanActivity extends AppCompatActivity implements QRCodeReade
         }
 
         final Intent intent = new Intent(getApplicationContext(), PaintingActivity.class);
-        intent.putExtra("painting", painting);
+        intent.putExtra(BundleKeys.EXTRA_PAINTING, painting);
         ActivityOptionsCompat options = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(QRCodeScanActivity.this, mFlashFab, "fab");
+                .makeSceneTransitionAnimation(QRCodeScanActivity.this, mFlashFab, TransitionNames.FAB);
         startActivity(intent, options.toBundle());
     }
 

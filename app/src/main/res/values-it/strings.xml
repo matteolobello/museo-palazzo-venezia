@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Museo Palazzo Venezia</string>
-    <string name="welcome_intro_description">Per favore scegli la tua lingua</string>
+    <string name="welcome_intro_description">Questa app ti aiuterà durante la visita del Museo</string>
     <string name="welcome_intro_title">Benvenuti al Museo di Palazzo Venezia</string>
     <string name="enjoy_intro_title">Buona\n visita!</string>
     <string name="qrcode_intro_title">Scansiona il codice QR\n per ottenere informazioni\n sull\'opera</string>

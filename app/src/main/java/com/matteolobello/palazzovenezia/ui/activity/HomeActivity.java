@@ -4,35 +4,34 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.matteolobello.palazzovenezia.R;
+import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
 import com.matteolobello.palazzovenezia.data.preference.PreferenceHandler;
-import com.matteolobello.palazzovenezia.ui.adapter.PaintingsRecyclerViewAdapter;
-import com.matteolobello.palazzovenezia.ui.scroll.ScrollHandler;
-import com.matteolobello.palazzovenezia.util.LanguageUtil;
+import com.matteolobello.palazzovenezia.data.transition.TransitionNames;
+import com.matteolobello.palazzovenezia.ui.adapter.recyclerview.PaintingsRecyclerViewAdapter;
+import com.matteolobello.palazzovenezia.util.ScrollUtil;
 import com.matteolobello.palazzovenezia.util.PermissionUtil;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class HomeActivity extends AppCompatActivity {
 
-    @BindView(R.id.toolbar)                 protected Toolbar              mToolbar;
-    @BindView(R.id.paintings_recycler_view) protected RecyclerView         mRecyclerView;
-    @BindView(R.id.qr_code_scan_fab)        protected FloatingActionButton mQRCodeScanFab;
+    private Toolbar mToolbar;
+    private RecyclerView mRecyclerView;
+    private FloatingActionButton mQRCodeScanFab;
 
     private PreferenceHandler mPreferenceHandler;
 
@@ -41,16 +40,16 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        ButterKnife.bind(this);
+        mToolbar = findViewById(R.id.toolbar);
+        mRecyclerView = findViewById(R.id.paintings_recycler_view);
+        mQRCodeScanFab = findViewById(R.id.qr_code_scan_fab);
 
         mPreferenceHandler = PreferenceHandler.get();
 
-        mToolbar.setTitle(LanguageUtil.getStringByLocale(this, R.string.app_name,
-                mPreferenceHandler.getValue(this, PreferenceHandler.LANGUAGE_KEY)));
         setSupportActionBar(mToolbar);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mQRCodeScanFab.setTransitionName("fab");
+            mQRCodeScanFab.setTransitionName(TransitionNames.FAB);
         }
 
         mQRCodeScanFab.setOnClickListener(new View.OnClickListener() {
@@ -64,19 +63,20 @@ public class HomeActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), QRCodeScanActivity.class);
                 ActivityOptionsCompat options = ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(HomeActivity.this, mQRCodeScanFab, "fab");
+                        .makeSceneTransitionAnimation(HomeActivity.this, mQRCodeScanFab, TransitionNames.FAB);
                 startActivity(intent, options.toBundle());
             }
         });
 
+        mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         mRecyclerView.setAdapter(new PaintingsRecyclerViewAdapter(
-                getIntent().<Painting>getParcelableArrayListExtra("all_paintings")));
+                getIntent().<Painting>getParcelableArrayListExtra(BundleKeys.EXTRA_ALL_PAINTINGS)));
 
-        ScrollHandler.setOnScrollListener(mRecyclerView, new ScrollHandler.OnScrollListener() {
+        ScrollUtil.setOnScrollListener(mRecyclerView, new ScrollUtil.OnScrollListener() {
             @Override
-            public void onScroll(@ScrollHandler.ScrollDirection int scrollDirection) {
-                if (scrollDirection == ScrollHandler.UP) {
+            public void onScroll(@ScrollUtil.ScrollDirection int scrollDirection) {
+                if (scrollDirection == ScrollUtil.UP) {
                     mQRCodeScanFab.show();
                 } else {
                     mQRCodeScanFab.hide();
@@ -104,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
             if (permissionsGranted) {
                 Intent intent = new Intent(getApplicationContext(), QRCodeScanActivity.class);
                 ActivityOptionsCompat options = ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(HomeActivity.this, mQRCodeScanFab, "fab");
+                        .makeSceneTransitionAnimation(HomeActivity.this, mQRCodeScanFab, TransitionNames.FAB);
                 startActivity(intent, options.toBundle());
             } else {
                 Toast.makeText(this, R.string.permission_not_granted, Toast.LENGTH_SHORT).show();
@@ -120,20 +120,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    protected boolean onPrepareOptionsPanel(View view, Menu menu) {
-        menu.findItem(R.id.action_map).setTitle(
-                LanguageUtil.getStringByLocale(this, R.string.map, mPreferenceHandler.getValue(this, PreferenceHandler.LANGUAGE_KEY)));
-        menu.findItem(R.id.action_about).setTitle(
-                LanguageUtil.getStringByLocale(this, R.string.about, mPreferenceHandler.getValue(this, PreferenceHandler.LANGUAGE_KEY)));
-
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_map:
-                startActivity(new Intent(getApplicationContext(), FullscreenPaintingActivity.class).putExtra("map", true));
+                startActivity(new Intent(getApplicationContext(), FullscreenPaintingActivity.class).putExtra(BundleKeys.EXTRA_MAP, true));
                 break;
             case R.id.action_about:
                 startActivity(new Intent(getApplicationContext(), AboutActivity.class));

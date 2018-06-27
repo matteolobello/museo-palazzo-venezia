@@ -2,33 +2,38 @@ package com.matteolobello.palazzovenezia.ui.activity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
+import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
+import com.matteolobello.palazzovenezia.data.transition.TransitionNames;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class FullscreenPaintingActivity extends AppCompatActivity {
 
-    @BindView(R.id.painting_image_view) protected PhotoView mPaintingView;
+    private PhotoView mPaintingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen_painting);
 
-        ButterKnife.bind(this);
+        mPaintingView = findViewById(R.id.painting_image_view);
 
-        if (!getIntent().getBooleanExtra("map", false)) {
+        if (!getIntent().getBooleanExtra(BundleKeys.EXTRA_MAP, false)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mPaintingView.setTransitionName("painting");
+                mPaintingView.setTransitionName(TransitionNames.PAINTING);
             }
 
-            String paintingPath = getIntent().getExtras().getString("painting_path");
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                return;
+            }
+
+            String paintingPath = extras.getString(BundleKeys.EXTRA_PAINTING_PATH);
             if (paintingPath != null) {
                 mPaintingView.setImageResource(AssetImageSetter.getImageResByName(this, paintingPath));
             }
@@ -36,13 +41,11 @@ public class FullscreenPaintingActivity extends AppCompatActivity {
             mPaintingView.setImageResource(R.drawable.map);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        }
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     }
 }
