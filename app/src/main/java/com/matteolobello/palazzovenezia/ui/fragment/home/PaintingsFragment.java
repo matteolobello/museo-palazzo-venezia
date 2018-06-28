@@ -1,9 +1,12 @@
 package com.matteolobello.palazzovenezia.ui.fragment.home;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.matteolobello.palazzovenezia.R;
@@ -13,12 +16,14 @@ import com.matteolobello.palazzovenezia.ui.adapter.recyclerview.PaintingsRecycle
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PaintingsFragment extends Fragment {
 
+    private NestedScrollView mNestedScrollView;
     private TextView mTitleTextView;
     private RecyclerView mRecyclerView;
 
@@ -32,13 +37,31 @@ public class PaintingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mNestedScrollView = view.findViewById(R.id.nested_scroll_view);
         mTitleTextView = view.findViewById(R.id.paintings_title_text_view);
         mRecyclerView = view.findViewById(R.id.paintings_recycler_view);
+
+        Activity activity = getActivity();
+        if (activity == null) {
+            return;
+        }
 
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setAdapter(new PaintingsRecyclerViewAdapter(
-                getActivity().getIntent().<Painting>getParcelableArrayListExtra(BundleKeys.EXTRA_ALL_PAINTINGS)));
+                activity.getIntent().<Painting>getParcelableArrayListExtra(BundleKeys.EXTRA_ALL_PAINTINGS)));
+
+        mNestedScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                int scrollY = mNestedScrollView.getScrollY();
+                int titleHeight = ((LinearLayout.LayoutParams) mTitleTextView.getLayoutParams()).topMargin;
+
+                float percentage = scrollY == 0 ? 0 : scrollY * 100 / titleHeight;
+
+                mTitleTextView.setAlpha(1 - (percentage / 100));
+            }
+        });
     }
 }

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.matteolobello.palazzovenezia.R;
+import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.ui.adapter.viewpager.HomeViewPagerAdapter;
 import com.matteolobello.palazzovenezia.ui.fragment.home.QRCodeFragment;
 import com.matteolobello.palazzovenezia.util.PermissionUtil;
@@ -20,6 +21,9 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private static final String SHORTCUT_ACTION_SEARCH = "search";
+    private static final String SHORTCUT_ACTION_MAP = "map";
 
     private ViewPager mViewPager;
     private BottomNavigationView mBottomNavigationView;
@@ -84,6 +88,18 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        String action = getIntent().getStringExtra(BundleKeys.EXTRA_SHORTCUT_ACTION);
+        if (action != null) {
+            switch (action) {
+                case SHORTCUT_ACTION_SEARCH:
+                    changeTabSelection(1);
+                    break;
+                case SHORTCUT_ACTION_MAP:
+                    changeTabSelection(3);
+                    break;
+            }
+        }
     }
 
     @Override

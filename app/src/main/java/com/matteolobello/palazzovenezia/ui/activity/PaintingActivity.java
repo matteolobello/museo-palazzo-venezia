@@ -218,12 +218,12 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                MediaPlayer exoPlayer = mSoundManager.getMediaPlayer();
+                MediaPlayer mediaPlayer = mSoundManager.getMediaPlayer();
 
                 int progress = seekBar.getProgress();
 
-                long newDuration = exoPlayer != null
-                        ? progress != 0 ? ((progress * exoPlayer.getDuration()) / 100) : 1
+                long newDuration = mediaPlayer != null
+                        ? progress != 0 ? ((progress * mediaPlayer.getDuration()) / 100) : 1
                         : 1;
 
                 mSoundManager.playAudio(getApplicationContext(), mPainting, PaintingActivity.this, newDuration);
@@ -288,9 +288,9 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
                         .setContentTitle(mPainting.getName())
                         .setContentIntent(pendingIntent);
         notificationBuilder.addAction(new NotificationCompat.Action(0,
-                getString(mPlayIconView.getIconState() == PlayIconDrawable.IconState.PAUSE
-                        ? R.string.play
-                        : R.string.pause),
+                getString(mSoundManager.getMediaPlayer().isPlaying()
+                        ? R.string.pause
+                        : R.string.play),
                 PendingIntent.getBroadcast(getApplicationContext(), 0,
                         new Intent(RECEIVER_INTENT_FILTER.getAction(0)),
                         PendingIntent.FLAG_CANCEL_CURRENT)));

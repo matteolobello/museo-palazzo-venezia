@@ -3,13 +3,36 @@
         android:enabled="true"
         android:icon="@drawable/ic_shortcut_search"
         android:shortcutDisabledMessage="@string/search_shortcut_title"
-        android:shortcutId="compose"
+        android:shortcutId="search"
         android:shortcutLongLabel="@string/search_shortcut_title"
         android:shortcutShortLabel="@string/search_shortcut_title">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.matteolobello.palazzovenezia.ui.activity.SearchActivity"
-            android:targetPackage="com.matteolobello.palazzovenezia" />
+            android:targetClass="com.matteolobello.palazzovenezia.ui.activity.LaunchScreenActivity"
+            android:targetPackage="com.matteolobello.palazzovenezia">
+
+            <extra
+                android:name="com.matteolobello.palazzovenezia.EXTRA_SHORTCUT_ACTION"
+                android:value="search" />
+        </intent>
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_map"
+        android:shortcutDisabledMessage="@string/map_shortcut_title"
+        android:shortcutId="map"
+        android:shortcutLongLabel="@string/map_shortcut_title"
+        android:shortcutShortLabel="@string/map_shortcut_title">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.matteolobello.palazzovenezia.ui.activity.LaunchScreenActivity"
+            android:targetPackage="com.matteolobello.palazzovenezia">
+
+            <extra
+                android:name="com.matteolobello.palazzovenezia.EXTRA_SHORTCUT_ACTION"
+                android:value="map" />
+        </intent>
     </shortcut>
 </shortcuts>
 

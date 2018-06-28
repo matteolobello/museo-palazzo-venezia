@@ -18,4 +18,5 @@
     <string name="scan">Scan</string>
     <string name="search_description">Comience a buscar una obra de arte tocando \"Buscar\" e ingresando el nombre de la misma</string>
     <string name="home_title">Museo Palazzo\nVenezia</string>
+    <string name="map_shortcut_title">Mapa</string>
 </resources>

@@ -28,6 +28,10 @@ public class LaunchScreenActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, classToLaunch);
         if (classToLaunch.getName().equals(HomeActivity.class.getName())) {
+            String action = getIntent().getStringExtra(BundleKeys.EXTRA_SHORTCUT_ACTION);
+            if (action != null) {
+                intent.putExtra(BundleKeys.EXTRA_SHORTCUT_ACTION, action);
+            }
             intent.putParcelableArrayListExtra(BundleKeys.EXTRA_ALL_PAINTINGS,
                     AssetPaintingsGenerator.generatePaintings(getApplicationContext()));
         }
