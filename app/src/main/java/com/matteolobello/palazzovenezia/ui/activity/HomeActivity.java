@@ -1,5 +1,9 @@
 package com.matteolobello.palazzovenezia.ui.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,25 +14,27 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.ui.adapter.viewpager.HomeViewPagerAdapter;
-import com.matteolobello.palazzovenezia.ui.fragment.home.QRCodeFragment;
+import com.matteolobello.palazzovenezia.ui.view.MaterialDesignViewPager;
 import com.matteolobello.palazzovenezia.util.PermissionUtil;
 import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
 
 public class HomeActivity extends AppCompatActivity {
 
     private static final String SHORTCUT_ACTION_SEARCH = "search";
     private static final String SHORTCUT_ACTION_MAP = "map";
 
-    private ViewPager mViewPager;
+    private MaterialDesignViewPager mViewPager;
     private BottomNavigationView mBottomNavigationView;
 
     private HomeViewPagerAdapter mViewPagerAdapter;
+
+    private int mBeforeQrCodeReadingFragmentIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,17 +78,36 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                 }
 
-                mViewPager.setCurrentItem(index, false);
-
                 if (index == 2) {
                     if (!PermissionUtil.hasPermissions(getApplicationContext())) {
                         ActivityCompat.requestPermissions(HomeActivity.this, PermissionUtil.PERMISSIONS, PermissionUtil.CAMERA_PERMISSIONS_REQUEST_CODE);
                         return false;
                     }
 
-                    ((QRCodeFragment) mViewPagerAdapter.getFragmentByClass(QRCodeFragment.class)).startCamera();
+                    mBeforeQrCodeReadingFragmentIndex = mViewPager.getCurrentItem() != 2
+                            ? mViewPager.getCurrentItem()
+                            : mBeforeQrCodeReadingFragmentIndex;
+
+                    mViewPager.setCurrentItem(2, true, new MaterialDesignViewPager.OnFragmentSetListener() {
+                        @Override
+                        public void onFragmentSet() {
+                            mBottomNavigationView.animate()
+                                    .translationY(mBottomNavigationView.getHeight())
+                                    .setDuration(200)
+                                    .setListener(new AnimatorListenerAdapter() {
+                                        @Override
+                                        public void onAnimationEnd(Animator animation) {
+                                            super.onAnimationEnd(animation);
+
+                                            startActivityForResult(new Intent(getApplicationContext(), QRCodeActivity.class), QRCodeActivity.REQUEST_CODE);
+                                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                                        }
+                                    })
+                                    .start();
+                        }
+                    });
                 } else {
-                    ((QRCodeFragment) mViewPagerAdapter.getFragmentByClass(QRCodeFragment.class)).stopCamera();
+                    mViewPager.setCurrentItem(index, false);
                 }
 
                 return true;
@@ -99,22 +124,6 @@ public class HomeActivity extends AppCompatActivity {
                     changeTabSelection(3);
                     break;
             }
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        ((QRCodeFragment) mViewPagerAdapter.getFragmentByClass(QRCodeFragment.class)).stopCamera();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (mViewPager.getCurrentItem() == 2) {
-            ((QRCodeFragment) mViewPagerAdapter.getFragmentByClass(QRCodeFragment.class)).startCamera();
         }
     }
 
@@ -138,6 +147,27 @@ public class HomeActivity extends AppCompatActivity {
                 changeTabSelection(0);
                 Toast.makeText(this, R.string.permission_not_granted, Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mBottomNavigationView.getTranslationY() == mBottomNavigationView.getHeight()) {
+            mBottomNavigationView.setTranslationY(0);
+            changeTabSelection(mBeforeQrCodeReadingFragmentIndex);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == QRCodeActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
+            Intent intent = new Intent(this, PaintingActivity.class);
+            intent.putExtra(BundleKeys.EXTRA_PAINTING, data.getParcelableExtra(BundleKeys.EXTRA_PAINTING));
+            startActivity(intent);
         }
     }
 

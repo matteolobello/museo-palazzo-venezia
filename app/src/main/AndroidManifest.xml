@@ -35,6 +35,9 @@
         <activity
             android:name="com.matteolobello.palazzovenezia.ui.activity.FullscreenPaintingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name="com.matteolobello.palazzovenezia.ui.activity.QRCodeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <service android:name="com.matteolobello.palazzovenezia.data.service.AppRemovedFromRecentAppsListDetectorService" />
     </application>

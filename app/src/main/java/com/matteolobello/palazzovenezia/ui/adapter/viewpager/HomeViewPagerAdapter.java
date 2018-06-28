@@ -3,7 +3,6 @@ package com.matteolobello.palazzovenezia.ui.adapter.viewpager;
 import com.matteolobello.palazzovenezia.ui.fragment.home.AboutFragment;
 import com.matteolobello.palazzovenezia.ui.fragment.home.MapFragment;
 import com.matteolobello.palazzovenezia.ui.fragment.home.PaintingsFragment;
-import com.matteolobello.palazzovenezia.ui.fragment.home.QRCodeFragment;
 import com.matteolobello.palazzovenezia.ui.fragment.home.SearchFragment;
 
 import androidx.fragment.app.Fragment;
@@ -14,7 +13,7 @@ public class HomeViewPagerAdapter extends FragmentPagerAdapter {
 
     private final PaintingsFragment mPaintingsFragment = new PaintingsFragment();
     private final SearchFragment mSearchFragment = new SearchFragment();
-    private final QRCodeFragment mQRCodeFragment = new QRCodeFragment();
+    private final Fragment mQRCodeFragment = new Fragment();
     private final MapFragment mMapFragment = new MapFragment();
     private final AboutFragment mAboutFragment = new AboutFragment();
 
@@ -38,19 +37,5 @@ public class HomeViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return FRAGMENTS.length;
-    }
-
-    public Fragment getFragmentByClass(Class fragmentClass) {
-        if (fragmentClass == PaintingsFragment.class) {
-            return mPaintingsFragment;
-        } else if (fragmentClass == SearchFragment.class) {
-            return mSearchFragment;
-        } else if (fragmentClass == QRCodeFragment.class) {
-            return mQRCodeFragment;
-        } else if (fragmentClass == MapFragment.class) {
-            return mMapFragment;
-        } else {
-            return mAboutFragment;
-        }
     }
 }

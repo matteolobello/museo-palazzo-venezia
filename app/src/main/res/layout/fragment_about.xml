@@ -261,7 +261,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="3dp"
                     android:layout_toEndOf="@id/profile_pic_leonardo"
-                    android:text="File Manager"
+                    android:text="Data Manager"
                     android:textColor="@color/secondaryTextColor" />
 
             </RelativeLayout>
