@@ -80,6 +80,7 @@ public class QRCodeActivity extends AppCompatActivity implements ZXingScannerVie
         intent.putExtra(BundleKeys.EXTRA_PAINTING, painting);
         setResult(Activity.RESULT_OK, intent);
         finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @Override
@@ -94,6 +95,12 @@ public class QRCodeActivity extends AppCompatActivity implements ZXingScannerVie
         super.onResume();
 
         startCamera();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     private void startCamera() {

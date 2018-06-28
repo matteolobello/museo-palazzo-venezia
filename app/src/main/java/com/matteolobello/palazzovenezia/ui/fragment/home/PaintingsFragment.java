@@ -52,16 +52,18 @@ public class PaintingsFragment extends Fragment {
         mRecyclerView.setAdapter(new PaintingsRecyclerViewAdapter(
                 activity.getIntent().<Painting>getParcelableArrayListExtra(BundleKeys.EXTRA_ALL_PAINTINGS)));
 
+        final int titleMarginTop = ((LinearLayout.LayoutParams) mTitleTextView.getLayoutParams()).topMargin;
         mNestedScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
                 int scrollY = mNestedScrollView.getScrollY();
-                int titleHeight = ((LinearLayout.LayoutParams) mTitleTextView.getLayoutParams()).topMargin;
-
-                float percentage = scrollY == 0 ? 0 : scrollY * 100 / titleHeight;
+                float percentage = scrollY == 0 ? 0 : scrollY * 100 / titleMarginTop;
 
                 mTitleTextView.setAlpha(1 - (percentage / 100));
             }
         });
+
+        mRecyclerView.setFocusable(false);
+        mTitleTextView.requestFocus();
     }
 }

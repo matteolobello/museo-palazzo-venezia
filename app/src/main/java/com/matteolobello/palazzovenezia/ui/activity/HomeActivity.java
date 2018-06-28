@@ -107,7 +107,7 @@ public class HomeActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    mViewPager.setCurrentItem(index, false);
+                    mViewPager.setCurrentItem(index, true);
                 }
 
                 return true;
