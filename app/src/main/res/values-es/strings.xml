@@ -3,12 +3,8 @@
     <string name="app_name">Museo Palazzo Venezia</string>
     <string name="about">Info</string>
     <string name="about_text">Esta aplicación ha sido desarrollada por un pequeño grupo de jóvenes estudiantes de la CCI Vincenzo Arangio Ruiz</string>
-    <string name="change_language">Cambio de idioma</string>
     <string name="enjoy_intro_title">Buena visita!</string>
-    <string name="finish">Termina</string>
-    <string name="grant_permission">Conceder permisos</string>
     <string name="map">Mapa</string>
-    <string name="next">Proximo</string>
     <string name="pause">Pausa</string>
     <string name="permission_not_granted">Permisos no otorgados</string>
     <string name="play">Play</string>
@@ -17,7 +13,6 @@
     <string name="qrcode_intro_title">Escána QR Code\n para traer informacciones sobre la obra</string>
     <string name="welcome_intro_title">Bienvenido en el Museo Palazzo Venezia</string>
     <string name="welcome_intro_description">Esta aplicación te ayudará a visitar el museo</string>
-    <string name="introduction">Introdución</string>
     <string name="search_shortcut_title">Busca</string>
     <string name="home">Home</string>
     <string name="scan">Scan</string>
