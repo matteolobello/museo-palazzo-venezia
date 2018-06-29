@@ -1,6 +1,5 @@
 package com.matteolobello.palazzovenezia.ui.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -8,7 +7,6 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
-import com.matteolobello.palazzovenezia.data.transition.TransitionNames;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,10 +20,6 @@ public class FullscreenPaintingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fullscreen_painting);
 
         mPaintingView = findViewById(R.id.painting_image_view);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mPaintingView.setTransitionName(TransitionNames.PAINTING);
-        }
 
         Bundle extras = getIntent().getExtras();
         if (extras == null) {

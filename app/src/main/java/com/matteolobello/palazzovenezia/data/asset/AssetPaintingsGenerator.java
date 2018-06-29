@@ -5,7 +5,6 @@ import android.content.res.AssetManager;
 import android.widget.Toast;
 
 import com.matteolobello.palazzovenezia.data.model.Painting;
-import com.matteolobello.palazzovenezia.data.preference.PreferenceHandler;
 import com.matteolobello.palazzovenezia.data.qrcode.QRCodeScanning;
 
 import java.io.File;
@@ -41,7 +40,7 @@ public class AssetPaintingsGenerator {
 
                 String audioFileName = assets.list(id + "/" + "mp3" + "/" + language)[0];
                 painting.setAudioPath(id + "/" + "mp3" + "/" + language + "/" + audioFileName);
-                
+
                 paintingArrayList.add(painting);
             }
         } catch (Exception e) {

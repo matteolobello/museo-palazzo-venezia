@@ -6,13 +6,11 @@ import android.media.MediaPlayer;
 
 import com.matteolobello.palazzovenezia.data.model.Painting;
 
-public class AssetSoundManager  {
-
-    private MediaPlayer mMediaPlayer;
-
-    private boolean mAudioFinished;
+public class AssetSoundManager {
 
     private static AssetSoundManager sInstance;
+    private MediaPlayer mMediaPlayer;
+    private boolean mAudioFinished;
 
     public static AssetSoundManager get() {
         if (sInstance == null) {

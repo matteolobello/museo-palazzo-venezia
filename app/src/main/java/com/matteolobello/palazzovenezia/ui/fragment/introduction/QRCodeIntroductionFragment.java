@@ -9,8 +9,8 @@ import android.widget.RelativeLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.ui.activity.IntroductionActivity;
-import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
 import com.matteolobello.palazzovenezia.util.PermissionUtil;
+import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

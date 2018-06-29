@@ -31,7 +31,6 @@ import com.matteolobello.palazzovenezia.data.asset.AssetSoundManager;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
 import com.matteolobello.palazzovenezia.data.service.AppRemovedFromRecentAppsListDetectorService;
-import com.matteolobello.palazzovenezia.data.transition.TransitionNames;
 import com.matteolobello.palazzovenezia.util.DpPxUtil;
 import com.matteolobello.palazzovenezia.util.ScrollUtil;
 import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
@@ -39,7 +38,6 @@ import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -156,8 +154,6 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mPaintingImageView.setTransitionName(TransitionNames.PAINTING);
-
             ActivityManager.TaskDescription taskDescription =
                     new ActivityManager.TaskDescription(mPainting.getName(),
                             BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher),
@@ -171,9 +167,7 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FullscreenPaintingActivity.class);
                 intent.putExtra(BundleKeys.EXTRA_PAINTING_PATH, "img_" + mPainting.getId());
-                ActivityOptionsCompat options = ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(PaintingActivity.this, view, TransitionNames.PAINTING);
-                startActivity(intent, options.toBundle());
+                startActivity(intent);
             }
         });
 

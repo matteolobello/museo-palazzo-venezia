@@ -10,14 +10,6 @@ public class ScrollUtil {
     public static final int UP = 0;
     public static final int DOWN = 1;
 
-    @IntDef({UP, DOWN})
-    public @interface ScrollDirection {
-    }
-
-    public interface OnScrollListener {
-        void onScroll(@ScrollDirection int scrollDirection);
-    }
-
     public static void setOnScrollListener(NestedScrollView nestedScrollView, final OnScrollListener onScrollListener) {
         nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
@@ -56,5 +48,13 @@ public class ScrollUtil {
                 }
             }
         });
+    }
+
+    @IntDef({UP, DOWN})
+    public @interface ScrollDirection {
+    }
+
+    public interface OnScrollListener {
+        void onScroll(@ScrollDirection int scrollDirection);
     }
 }

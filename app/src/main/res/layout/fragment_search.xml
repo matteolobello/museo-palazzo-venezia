@@ -58,7 +58,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.yayandroid.parallaxrecyclerview.ParallaxRecyclerView
         android:id="@+id/search_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

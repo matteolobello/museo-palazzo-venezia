@@ -29,12 +29,8 @@ android {
 }
 
 dependencies {
-    implementation("com.github.ozodrukh:CircularReveal:2.0.1@aar") {
-        transitive = true
-    }
     implementation "androidx.appcompat:appcompat:1.0.0-alpha3"
     implementation "androidx.recyclerview:recyclerview:1.0.0-alpha3"
-    implementation "androidx.legacy:legacy-support-v4:1.0.0-alpha3"
     implementation "com.google.android.material:material:1.0.0-alpha3"
     implementation "com.github.fafaldo:fab-toolbar:1.2.0"
     implementation "com.github.alxrm:youtube-play-icon:0.9"
@@ -43,4 +39,5 @@ dependencies {
     implementation "me.dm7.barcodescanner:zxing:1.9.8"
     implementation "com.minimize.library:seekbar-compat:0.2.5"
     implementation "com.romandanylyk:pageindicatorview:+@aar"
+    implementation "com.yayandroid:ParallaxRecyclerView:1.1"
 }

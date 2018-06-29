@@ -15,13 +15,12 @@ import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
-import com.matteolobello.palazzovenezia.data.transition.TransitionNames;
 import com.matteolobello.palazzovenezia.ui.activity.PaintingActivity;
+import com.yayandroid.parallaxrecyclerview.ParallaxViewHolder;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder> {
@@ -55,11 +54,9 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Intent intent = new Intent(activity, PaintingActivity.class);
+                Intent intent = new Intent(activity, PaintingActivity.class);
                 intent.putExtra(BundleKeys.EXTRA_PAINTING, painting);
-                ActivityOptionsCompat options = ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(activity, paintingImageView, TransitionNames.PAINTING);
-                activity.startActivity(intent, options.toBundle());
+                activity.startActivity(intent);
             }
         });
     }
@@ -93,7 +90,7 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
         return paintingsFound.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends ParallaxViewHolder {
 
         private ImageView mPaintingImageView;
         private TextView mPaintingTitle;
@@ -103,6 +100,11 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
 
             mPaintingImageView = itemView.findViewById(R.id.painting_image_view);
             mPaintingTitle = itemView.findViewById(R.id.painting_title);
+        }
+
+        @Override
+        public int getParallaxImageId() {
+            return R.id.painting_image_view;
         }
 
         ImageView getPaintingImageView() {

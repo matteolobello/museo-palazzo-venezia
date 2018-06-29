@@ -2,7 +2,6 @@ package com.matteolobello.palazzovenezia.ui.adapter.recyclerview;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +12,11 @@ import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
-import com.matteolobello.palazzovenezia.data.transition.TransitionNames;
 import com.matteolobello.palazzovenezia.ui.activity.PaintingActivity;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PaintingsRecyclerViewAdapter extends RecyclerView.Adapter<PaintingsRecyclerViewAdapter.ViewHolder> {
@@ -50,11 +47,9 @@ public class PaintingsRecyclerViewAdapter extends RecyclerView.Adapter<Paintings
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Intent intent = new Intent(activity, PaintingActivity.class);
+                Intent intent = new Intent(activity, PaintingActivity.class);
                 intent.putExtra(BundleKeys.EXTRA_PAINTING, painting);
-                ActivityOptionsCompat options = ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(activity, paintingImageView, TransitionNames.PAINTING);
-                activity.startActivity(intent, options.toBundle());
+                activity.startActivity(intent);
             }
         });
     }

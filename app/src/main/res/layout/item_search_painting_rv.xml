@@ -5,13 +5,13 @@
     android:foreground="@drawable/selectable_item_background"
     android:orientation="vertical">
 
-    <ImageView
+    <com.yayandroid.parallaxrecyclerview.ParallaxImageView
         android:id="@+id/painting_image_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/painting_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

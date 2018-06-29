@@ -3,14 +3,14 @@
 ### An app made for the Palazzo Venezia Museum in Rome.
 
 ## Features
-- List of works of art
-- Description of every work of art included in the app
-- Three languages (English, Spanish, Italian)
+- List of artworks
+- Description of every artwork included in the app
+- Three languages supported (English, Spanish, Italian)
 - Audio support (not completed)
 - Map of the Museum
 - Search work of art by its name
 - QR Code[1] support, every work of art has a unique QR Code which can be scanned to get more info about what you are seeing
-- Totally offline
+- No need for an Internet connection
 
 ## The Team
 - Matteo Lobello (Developer)

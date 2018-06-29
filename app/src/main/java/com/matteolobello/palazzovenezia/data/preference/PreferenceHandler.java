@@ -9,11 +9,6 @@ import androidx.annotation.StringDef;
 public class PreferenceHandler {
 
     public static final String LAUNCH_INTRODUCTION_KEY = "launch_introduction";
-
-    @StringDef({LAUNCH_INTRODUCTION_KEY})
-    public @interface PreferenceKey {
-    }
-
     private static PreferenceHandler sInstance;
 
     private PreferenceHandler() {
@@ -27,7 +22,6 @@ public class PreferenceHandler {
         return sInstance;
     }
 
-
     public String getValue(Context context, @PreferenceKey String key) {
         return getSharedPreferences(context).getString(key, null);
     }
@@ -38,5 +32,9 @@ public class PreferenceHandler {
 
     private SharedPreferences getSharedPreferences(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
+    }
+
+    @StringDef({LAUNCH_INTRODUCTION_KEY})
+    public @interface PreferenceKey {
     }
 }
