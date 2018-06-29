@@ -2,6 +2,7 @@ package com.matteolobello.palazzovenezia.ui.fragment.home;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,8 +70,13 @@ public class SearchFragment extends Fragment {
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (mSearchAdapter.searchPainting(s.toString()) > 0) {
+            public void onTextChanged(CharSequence query, int start, int before, int count) {
+                mSearchClearImageView.animate()
+                        .alpha(TextUtils.isEmpty(query) ? 0 : 1)
+                        .setDuration(200)
+                        .start();
+
+                if (mSearchAdapter.searchPainting(query.toString()) > 0) {
                     mSearchRecyclerView.setVisibility(View.VISIBLE);
                     mEmptyResultView.setVisibility(View.GONE);
                 } else {
