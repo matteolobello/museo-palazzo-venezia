@@ -13,6 +13,7 @@ import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
 import com.matteolobello.palazzovenezia.ui.adapter.recyclerview.PaintingsRecyclerViewAdapter;
+import com.matteolobello.palazzovenezia.ui.view.recyclerview.PaintingsRecyclerViewItemDecoration;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,6 +52,7 @@ public class PaintingsFragment extends Fragment {
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setAdapter(new PaintingsRecyclerViewAdapter(
                 activity.getIntent().<Painting>getParcelableArrayListExtra(BundleKeys.EXTRA_ALL_PAINTINGS)));
+        mRecyclerView.addItemDecoration(new PaintingsRecyclerViewItemDecoration());
 
         final int titleMarginTop = ((LinearLayout.LayoutParams) mTitleTextView.getLayoutParams()).topMargin;
         mNestedScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {

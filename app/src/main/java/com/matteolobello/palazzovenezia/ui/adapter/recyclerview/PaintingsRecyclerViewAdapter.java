@@ -13,6 +13,7 @@ import com.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
 import com.matteolobello.palazzovenezia.ui.activity.PaintingActivity;
+import com.matteolobello.palazzovenezia.util.DpPxUtil;
 
 import java.util.ArrayList;
 
