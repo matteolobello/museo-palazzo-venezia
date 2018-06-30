@@ -59,6 +59,10 @@ public class HomeActivity extends AppCompatActivity {
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                if (mViewPager.isSwitchingFragment()) {
+                    return false;
+                }
+
                 int index = 0;
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:

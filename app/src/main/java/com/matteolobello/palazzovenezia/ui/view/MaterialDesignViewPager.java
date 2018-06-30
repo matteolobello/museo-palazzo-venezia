@@ -18,6 +18,8 @@ public class MaterialDesignViewPager extends ViewPager {
 
     private Animation mCurrentAnimation;
 
+    private boolean mIsSwitchingFragment;
+
     public MaterialDesignViewPager(@NonNull Context context) {
         super(context);
     }
@@ -51,10 +53,21 @@ public class MaterialDesignViewPager extends ViewPager {
             return;
         }
 
-        if (!withAnimation) {
-            MaterialDesignViewPager.super.setCurrentItem(item, false);
+        if (mIsSwitchingFragment) {
             return;
         }
+
+        if (!withAnimation) {
+            mIsSwitchingFragment = true;
+
+            MaterialDesignViewPager.super.setCurrentItem(item, false);
+
+            mIsSwitchingFragment = false;
+
+            return;
+        }
+
+        mIsSwitchingFragment = true;
 
         if (mCurrentAnimation != null) {
             mCurrentAnimation.cancel();
@@ -71,11 +84,26 @@ public class MaterialDesignViewPager extends ViewPager {
                 MaterialDesignViewPager.super.setCurrentItem(item, false);
 
                 Animation slideInUpAnimation = mCurrentAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_in_up_fade_in);
-                startAnimation(slideInUpAnimation);
+                slideInUpAnimation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
 
-                if (onFragmentSetListener != null) {
-                    onFragmentSetListener.onFragmentSet();
-                }
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        mIsSwitchingFragment = false;
+
+                        if (onFragmentSetListener != null) {
+                            onFragmentSetListener.onFragmentSet();
+                        }
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                startAnimation(slideInUpAnimation);
             }
 
             @Override
@@ -83,6 +111,10 @@ public class MaterialDesignViewPager extends ViewPager {
             }
         });
         startAnimation(fadeOutAnimation);
+    }
+
+    public boolean isSwitchingFragment() {
+        return mIsSwitchingFragment;
     }
 
     public interface OnFragmentSetListener {
