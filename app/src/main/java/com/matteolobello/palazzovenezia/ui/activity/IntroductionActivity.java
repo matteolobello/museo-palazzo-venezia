@@ -34,7 +34,8 @@ public class IntroductionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduction);
 
-        SystemBarsUtil.setFullyTransparentSystemBars(this, true);
+        SystemBarsUtil.setFullyTransparentNavigationBar(this);
+        SystemBarsUtil.setFullyTransparentStatusBar(this);
 
         mViewPager = findViewById(R.id.introduction_view_pager);
         mPageIndicatorView = findViewById(R.id.viewpager_indicator);

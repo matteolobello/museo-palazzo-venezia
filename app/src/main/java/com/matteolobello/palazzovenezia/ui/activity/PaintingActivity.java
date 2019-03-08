@@ -10,14 +10,20 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -31,6 +37,7 @@ import com.matteolobello.palazzovenezia.data.asset.AssetSoundManager;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
 import com.matteolobello.palazzovenezia.data.service.AppRemovedFromRecentAppsListDetectorService;
+import com.matteolobello.palazzovenezia.util.BitmapUtil;
 import com.matteolobello.palazzovenezia.util.DpPxUtil;
 import com.matteolobello.palazzovenezia.util.ScrollUtil;
 import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
@@ -42,7 +49,9 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.widget.ImageViewCompat;
 import androidx.core.widget.NestedScrollView;
+
 import app.minimize.com.seek_bar_compat.SeekBarCompat;
 import rm.com.youtubeplayicon.PlayIconDrawable;
 import rm.com.youtubeplayicon.PlayIconView;
@@ -67,6 +76,7 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
     private View mFabToolbar;
     private Toolbar mToolbar;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
+    private TextView mTitleTextView;
     private TextView mDescriptionTextView;
     private PlayIconView mPlayIconView;
     private SeekBarCompat mSeekBar;
@@ -113,8 +123,8 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_painting);
 
-        SystemBarsUtil.setFullyTransparentStatusBar(this);
         SystemBarsUtil.setNavigationBarColor(this, ContextCompat.getColor(this, android.R.color.white), false);
+        SystemBarsUtil.setFullyTransparentStatusBar(this);
 
         if (!SystemBarsUtil.hasNavigationBar(this)) {
             findViewById(R.id.navigation_bar_divider).setVisibility(View.GONE);
@@ -126,6 +136,7 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
         mFabToolbar = findViewById(R.id.fabtoolbar_toolbar);
         mToolbar = findViewById(R.id.toolbar);
         mCollapsingToolbarLayout = findViewById(R.id.toolbar_layout);
+        mTitleTextView = findViewById(R.id.painting_title_text_view);
         mDescriptionTextView = findViewById(R.id.painting_description_text_view);
         mPlayIconView = findViewById(R.id.play_pause);
         mSeekBar = findViewById(R.id.seek_bar);
@@ -140,12 +151,9 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
 
         mSoundManager = AssetSoundManager.get();
 
-        mToolbar.setTitle(mPainting.getName());
+        mToolbar.setTitle("");
+        ((FrameLayout.LayoutParams) mToolbar.getLayoutParams()).topMargin = SystemBarsUtil.getStatusBarHeight(this);
         setSupportActionBar(mToolbar);
-
-        Typeface font = ResourcesCompat.getFont(this, R.font.radnika);
-        mCollapsingToolbarLayout.setCollapsedTitleTypeface(font);
-        mCollapsingToolbarLayout.setExpandedTitleTypeface(font);
 
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -161,6 +169,11 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
             setTaskDescription(taskDescription);
         }
 
+        Drawable toolbarBackArrowDrawable = mToolbar.getNavigationIcon();
+        if (toolbarBackArrowDrawable != null) {
+            toolbarBackArrowDrawable.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+        }
+
         AssetImageSetter.setImageByPaintingId(mPaintingImageView, mPainting.getId());
         mPaintingImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,8 +184,13 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
             }
         });
 
+        mTitleTextView.setText(mPainting.getName());
         mDescriptionTextView.setText(mPainting.getDescription());
 
+        ImageViewCompat.setImageTintList(
+                mHeadsetFab,
+                ColorStateList.valueOf(Color.WHITE)
+        );
         mHeadsetFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -191,7 +209,7 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
                             .start();
                 }
 
-                changeNestedScrollViewPadding(DpPxUtil.convertDpToPixel(56 + 12));
+                changeNestedScrollViewPadding(DpPxUtil.convertDpToPixel(12));
             }
         });
 
@@ -229,17 +247,6 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
                 everySecondUIUpdater(true);
 
                 handleNotification();
-            }
-        });
-
-        ScrollUtil.setOnScrollListener(mNestedScrollView, new ScrollUtil.OnScrollListener() {
-            @Override
-            public void onScroll(@ScrollUtil.ScrollDirection int scrollDirection) {
-                if (scrollDirection == ScrollUtil.UP) {
-                    mHeadsetFab.show();
-                } else {
-                    mHeadsetFab.hide();
-                }
             }
         });
 

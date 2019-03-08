@@ -95,19 +95,7 @@ public class HomeActivity extends AppCompatActivity {
                     mViewPager.setCurrentItem(2, true, new MaterialDesignViewPager.OnFragmentSetListener() {
                         @Override
                         public void onFragmentSet() {
-                            mBottomNavigationView.animate()
-                                    .translationY(mBottomNavigationView.getHeight())
-                                    .setDuration(200)
-                                    .setListener(new AnimatorListenerAdapter() {
-                                        @Override
-                                        public void onAnimationEnd(Animator animation) {
-                                            super.onAnimationEnd(animation);
-
-                                            startActivityForResult(new Intent(getApplicationContext(), QRCodeActivity.class), QRCodeActivity.REQUEST_CODE);
-                                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                                        }
-                                    })
-                                    .start();
+                            hideBottomNavigationViewAndStartQrCodeActivity();
                         }
                     });
                 } else {
@@ -147,6 +135,7 @@ public class HomeActivity extends AppCompatActivity {
 
             if (permissionsGranted) {
                 changeTabSelection(2);
+                hideBottomNavigationViewAndStartQrCodeActivity();
             } else {
                 changeTabSelection(0);
                 Toast.makeText(this, R.string.permission_not_granted, Toast.LENGTH_SHORT).show();
@@ -198,5 +187,21 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         mBottomNavigationView.setSelectedItemId(tabItemId);
+    }
+
+    private void hideBottomNavigationViewAndStartQrCodeActivity() {
+        mBottomNavigationView.animate()
+                .translationY(mBottomNavigationView.getHeight())
+                .setDuration(200)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+
+                        startActivityForResult(new Intent(getApplicationContext(), QRCodeActivity.class), QRCodeActivity.REQUEST_CODE);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    }
+                })
+                .start();
     }
 }

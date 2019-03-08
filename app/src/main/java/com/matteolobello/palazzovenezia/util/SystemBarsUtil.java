@@ -10,23 +10,24 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.matteolobello.palazzovenezia.R;
+import com.matteolobello.palazzovenezia.ui.activity.PaintingActivity;
 
 import androidx.core.content.ContextCompat;
 
 public class SystemBarsUtil {
 
     public static void setFullyTransparentStatusBar(Activity activity) {
-        setFullyTransparentSystemBars(activity, false);
+        activity.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility()
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
 
-    public static void setFullyTransparentSystemBars(Activity activity, boolean navBarToo) {
-        setStatusBarColor(activity, Color.TRANSPARENT, false);
-        setWindowFlag(activity, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
-        if (navBarToo) {
-            setWindowFlag(activity, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, true);
-        }
+    public static void setFullyTransparentNavigationBar(Activity activity) {
+        setWindowFlag(activity, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, true);
         activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        setNavigationBarColor(activity, Color.TRANSPARENT, false);
     }
 
     public static void setNavigationBarColor(final Activity activity, int color, boolean withFade) {
@@ -75,9 +76,26 @@ public class SystemBarsUtil {
         colorAnimation.start();
     }
 
+    public static void goImmersive(Activity activity) {
+        activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+    }
+
     public static boolean hasNavigationBar(Activity activity) {
         int id = activity.getResources().getIdentifier("config_showNavigationBar", "bool", "android");
         return id > 0 && activity.getResources().getBoolean(id);
+    }
+
+    public static int getStatusBarHeight(Activity activity) {
+        int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            return activity.getResources().getDimensionPixelSize(resourceId);
+        }
+        return 0;
     }
 
     public static int getNavigationBarHeight(Activity activity) {

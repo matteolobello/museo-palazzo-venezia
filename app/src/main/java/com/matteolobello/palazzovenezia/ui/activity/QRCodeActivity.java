@@ -36,6 +36,7 @@ public class QRCodeActivity extends AppCompatActivity implements ZXingScannerVie
 
         SystemBarsUtil.setNavigationBarColor(this, ContextCompat.getColor(this, android.R.color.white), false);
         SystemBarsUtil.setStatusBarColor(this, ContextCompat.getColor(this, android.R.color.white), false);
+        SystemBarsUtil.goImmersive(this);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
