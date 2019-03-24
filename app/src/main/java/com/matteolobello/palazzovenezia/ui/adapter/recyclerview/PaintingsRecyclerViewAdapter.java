@@ -2,29 +2,42 @@ package com.matteolobello.palazzovenezia.ui.adapter.recyclerview;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.github.florent37.materialimageloading.MaterialImageLoading;
+import com.google.android.material.snackbar.Snackbar;
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
+import com.matteolobello.palazzovenezia.ui.activity.HomeActivity;
 import com.matteolobello.palazzovenezia.ui.activity.PaintingActivity;
 import com.matteolobello.palazzovenezia.util.DpPxUtil;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PaintingsRecyclerViewAdapter extends RecyclerView.Adapter<PaintingsRecyclerViewAdapter.ViewHolder> {
 
+    @Nullable
+    private View mPaintingsFragmentRootView;
+
     private final ArrayList<Painting> mPaintingArrayList;
 
     public PaintingsRecyclerViewAdapter(ArrayList<Painting> paintingArrayList) {
+        this(null, paintingArrayList);
+    }
+
+    public PaintingsRecyclerViewAdapter(@Nullable View paintingsFragmentRootView, ArrayList<Painting> paintingArrayList) {
+        mPaintingsFragmentRootView = paintingsFragmentRootView;
         mPaintingArrayList = paintingArrayList;
     }
 
@@ -39,20 +52,42 @@ public class PaintingsRecyclerViewAdapter extends RecyclerView.Adapter<Paintings
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Painting painting = mPaintingArrayList.get(position);
         final ImageView paintingImageView = holder.getPaintingImageView();
-        final Activity activity = ((Activity) paintingImageView.getContext());
 
         AssetImageSetter.setImageByPaintingId(paintingImageView, painting.getId());
-
         MaterialImageLoading.animate(paintingImageView).setDuration(position * 300).start();
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        final View.OnClickListener onPaintingClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, PaintingActivity.class);
+                Intent intent = new Intent(view.getContext(), PaintingActivity.class);
                 intent.putExtra(BundleKeys.EXTRA_PAINTING, painting);
-                activity.startActivity(intent);
+                view.getContext().startActivity(intent);
             }
-        });
+        };
+
+        final View.OnLongClickListener onPaintingLongClickListener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (mPaintingsFragmentRootView != null) {
+                    Snackbar.make(mPaintingsFragmentRootView, painting.getName(), Snackbar.LENGTH_SHORT)
+                            .setAction(R.string.info, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    onPaintingClickListener.onClick(view);
+                                }
+                            })
+                            .setActionTextColor(Color.WHITE)
+                            .show();
+                } else {
+                    Toast.makeText(view.getContext(), painting.getName(), Toast.LENGTH_SHORT).show();
+                }
+
+                return true;
+            }
+        };
+
+        holder.itemView.setOnClickListener(onPaintingClickListener);
+        holder.itemView.setOnLongClickListener(onPaintingLongClickListener);
     }
 
     @Override

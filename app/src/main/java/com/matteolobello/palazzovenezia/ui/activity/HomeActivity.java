@@ -120,6 +120,15 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        if (mViewPager.getCurrentItem() != 0) {
+            changeTabSelection(0);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
@@ -165,8 +174,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void changeTabSelection(int index) {
-        mViewPager.setCurrentItem(index, false);
-
         int tabItemId = R.id.action_home;
         switch (index) {
             case 0:

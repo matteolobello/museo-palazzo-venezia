@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SearchFragment extends Fragment {
 
-    private View mSearchContainer;
     private EditText mSearchEditText;
     private ImageView mSearchClearImageView;
     private RecyclerView mSearchRecyclerView;
@@ -43,7 +42,6 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mSearchContainer = view.findViewById(R.id.search_container);
         mSearchEditText = view.findViewById(R.id.search_view);
         mSearchClearImageView = view.findViewById(R.id.search_clear);
         mSearchRecyclerView = view.findViewById(R.id.search_rv);

@@ -50,7 +50,7 @@ public class PaintingsFragment extends Fragment {
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(gridLayoutManager);
-        mRecyclerView.setAdapter(new PaintingsRecyclerViewAdapter(
+        mRecyclerView.setAdapter(new PaintingsRecyclerViewAdapter(view,
                 activity.getIntent().<Painting>getParcelableArrayListExtra(BundleKeys.EXTRA_ALL_PAINTINGS)));
         mRecyclerView.addItemDecoration(new PaintingsRecyclerViewItemDecoration());
 

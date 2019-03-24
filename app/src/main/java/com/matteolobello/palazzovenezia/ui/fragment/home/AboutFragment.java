@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 public class AboutFragment extends Fragment implements View.OnClickListener {
 
-    private static final String MATTEO_LINK = "https://www.matteolobello.com";
+    private static final String MATTEO_LINK = "https://www.matteolobello.it";
     private static final String ANDREA_LINK = "https://www.instagram.com/alpaca_furioso";
     private static final String ALESSANDRO_LINK = "https://www.facebook.com/alessandro.currenti.1";
     private static final String FEDERICO_LINK = "https://www.facebook.com/federico.fiorio.9";

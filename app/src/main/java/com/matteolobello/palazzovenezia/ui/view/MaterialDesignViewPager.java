@@ -60,7 +60,7 @@ public class MaterialDesignViewPager extends ViewPager {
         if (!withAnimation) {
             mIsSwitchingFragment = true;
 
-            MaterialDesignViewPager.super.setCurrentItem(item, false);
+            super.setCurrentItem(item, false);
 
             mIsSwitchingFragment = false;
 
