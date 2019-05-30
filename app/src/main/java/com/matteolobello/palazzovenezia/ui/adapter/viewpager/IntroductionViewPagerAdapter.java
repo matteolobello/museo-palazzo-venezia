@@ -1,12 +1,12 @@
 package com.matteolobello.palazzovenezia.ui.adapter.viewpager;
 
-import com.matteolobello.palazzovenezia.ui.fragment.introduction.EnjoyIntroductionFragment;
-import com.matteolobello.palazzovenezia.ui.fragment.introduction.QRCodeIntroductionFragment;
-import com.matteolobello.palazzovenezia.ui.fragment.introduction.WelcomeIntroductionFragment;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.matteolobello.palazzovenezia.ui.fragment.introduction.EnjoyIntroductionFragment;
+import com.matteolobello.palazzovenezia.ui.fragment.introduction.QRCodeIntroductionFragment;
+import com.matteolobello.palazzovenezia.ui.fragment.introduction.WelcomeIntroductionFragment;
 
 public class IntroductionViewPagerAdapter extends FragmentPagerAdapter {
 

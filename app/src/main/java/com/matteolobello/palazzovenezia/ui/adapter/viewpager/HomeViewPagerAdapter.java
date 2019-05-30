@@ -1,13 +1,13 @@
 package com.matteolobello.palazzovenezia.ui.adapter.viewpager;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+
 import com.matteolobello.palazzovenezia.ui.fragment.home.AboutFragment;
 import com.matteolobello.palazzovenezia.ui.fragment.home.MapFragment;
 import com.matteolobello.palazzovenezia.ui.fragment.home.PaintingsFragment;
 import com.matteolobello.palazzovenezia.ui.fragment.home.SearchFragment;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 
 public class HomeViewPagerAdapter extends FragmentPagerAdapter {
 

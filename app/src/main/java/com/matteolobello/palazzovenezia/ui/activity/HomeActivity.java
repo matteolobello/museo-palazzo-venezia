@@ -10,6 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
@@ -17,12 +23,6 @@ import com.matteolobello.palazzovenezia.ui.adapter.viewpager.HomeViewPagerAdapte
 import com.matteolobello.palazzovenezia.ui.view.MaterialDesignViewPager;
 import com.matteolobello.palazzovenezia.util.PermissionUtil;
 import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 public class HomeActivity extends AppCompatActivity {
 

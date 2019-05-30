@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.matteolobello.palazzovenezia">
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -9,7 +10,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name="com.matteolobello.palazzovenezia.ui.activity.LaunchScreenActivity"
             android:theme="@style/LaunchScreenTheme">
@@ -28,11 +30,11 @@
         <activity
             android:name="com.matteolobello.palazzovenezia.ui.activity.HomeActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.matteolobello.palazzovenezia.ui.activity.PaintingActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.matteolobello.palazzovenezia.ui.activity.FullscreenPaintingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />

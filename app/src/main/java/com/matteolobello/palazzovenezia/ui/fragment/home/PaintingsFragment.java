@@ -9,18 +9,18 @@ import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.matteolobello.palazzovenezia.R;
-import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
-import com.matteolobello.palazzovenezia.data.model.Painting;
-import com.matteolobello.palazzovenezia.ui.adapter.recyclerview.PaintingsRecyclerViewAdapter;
-import com.matteolobello.palazzovenezia.ui.view.recyclerview.PaintingsRecyclerViewItemDecoration;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.matteolobello.palazzovenezia.R;
+import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
+import com.matteolobello.palazzovenezia.data.model.Painting;
+import com.matteolobello.palazzovenezia.ui.adapter.recyclerview.PaintingsRecyclerViewAdapter;
+import com.matteolobello.palazzovenezia.ui.view.recyclerview.PaintingsRecyclerViewItemDecoration;
 
 public class PaintingsFragment extends Fragment {
 

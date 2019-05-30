@@ -11,17 +11,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.matteolobello.palazzovenezia.R;
-import com.matteolobello.palazzovenezia.data.asset.AssetPaintingsGenerator;
-import com.matteolobello.palazzovenezia.ui.adapter.recyclerview.SearchRecyclerViewAdapter;
-
-import java.lang.reflect.Field;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.matteolobello.palazzovenezia.R;
+import com.matteolobello.palazzovenezia.data.asset.AssetPaintingsGenerator;
+import com.matteolobello.palazzovenezia.ui.adapter.recyclerview.SearchRecyclerViewAdapter;
+
+import java.lang.reflect.Field;
 
 public class SearchFragment extends Fragment {
 

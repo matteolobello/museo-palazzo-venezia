@@ -1,15 +1,14 @@
 package com.matteolobello.palazzovenezia.ui.activity;
 
 import android.os.Bundle;
-import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class FullscreenPaintingActivity extends AppCompatActivity {
 

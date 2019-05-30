@@ -3,11 +3,11 @@ package com.matteolobello.palazzovenezia.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.matteolobello.palazzovenezia.data.asset.AssetPaintingsGenerator;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.preference.PreferenceHandler;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class LaunchScreenActivity extends AppCompatActivity {
 

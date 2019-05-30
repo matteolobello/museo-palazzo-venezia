@@ -5,6 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.google.zxing.Result;
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetFileReader;
@@ -16,10 +21,6 @@ import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
 import java.io.File;
 import java.util.Locale;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class QRCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {

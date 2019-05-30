@@ -1,6 +1,5 @@
 package com.matteolobello.palazzovenezia.ui.adapter.recyclerview;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -9,21 +8,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.github.florent37.materialimageloading.MaterialImageLoading;
 import com.google.android.material.snackbar.Snackbar;
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import com.matteolobello.palazzovenezia.data.model.Painting;
-import com.matteolobello.palazzovenezia.ui.activity.HomeActivity;
 import com.matteolobello.palazzovenezia.ui.activity.PaintingActivity;
-import com.matteolobello.palazzovenezia.util.DpPxUtil;
 
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class PaintingsRecyclerViewAdapter extends RecyclerView.Adapter<PaintingsRecyclerViewAdapter.ViewHolder> {
 

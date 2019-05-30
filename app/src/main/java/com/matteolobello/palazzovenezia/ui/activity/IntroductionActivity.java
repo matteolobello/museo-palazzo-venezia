@@ -7,6 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.viewpager.widget.ViewPager;
+
 import com.matteolobello.palazzovenezia.R;
 import com.matteolobello.palazzovenezia.data.asset.AssetPaintingsGenerator;
 import com.matteolobello.palazzovenezia.data.bundle.BundleKeys;
@@ -15,12 +21,6 @@ import com.matteolobello.palazzovenezia.ui.fragment.introduction.QRCodeIntroduct
 import com.matteolobello.palazzovenezia.util.PermissionUtil;
 import com.matteolobello.palazzovenezia.util.SystemBarsUtil;
 import com.rd.PageIndicatorView;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.viewpager.widget.ViewPager;
 
 public class IntroductionActivity extends AppCompatActivity {
 

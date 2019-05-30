@@ -6,11 +6,11 @@ import android.view.MotionEvent;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.matteolobello.palazzovenezia.R;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
+
+import com.matteolobello.palazzovenezia.R;
 
 public class MaterialDesignViewPager extends ViewPager {
 

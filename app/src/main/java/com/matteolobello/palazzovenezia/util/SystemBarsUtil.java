@@ -9,10 +9,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.matteolobello.palazzovenezia.R;
-import com.matteolobello.palazzovenezia.ui.activity.PaintingActivity;
-
 import androidx.core.content.ContextCompat;
+
+import com.matteolobello.palazzovenezia.R;
 
 public class SystemBarsUtil {
 

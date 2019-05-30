@@ -3,10 +3,10 @@ package com.matteolobello.palazzovenezia.ui.view.recyclerview;
 import android.graphics.Rect;
 import android.view.View;
 
-import com.matteolobello.palazzovenezia.util.DpPxUtil;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.matteolobello.palazzovenezia.util.DpPxUtil;
 
 public class PaintingsRecyclerViewItemDecoration extends RecyclerView.ItemDecoration {
 
