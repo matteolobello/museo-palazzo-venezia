@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.matteolobello.palazzovenezia">
+    package="it.matteolobello.palazzovenezia">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="com.matteolobello.palazzovenezia.ui.activity.LaunchScreenActivity"
+            android:name="it.matteolobello.palazzovenezia.ui.activity.LaunchScreenActivity"
             android:theme="@style/LaunchScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,24 +25,24 @@
                 android:resource="@xml/shortcuts" />
         </activity>
         <activity
-            android:name="com.matteolobello.palazzovenezia.ui.activity.IntroductionActivity"
+            android:name="it.matteolobello.palazzovenezia.ui.activity.IntroductionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.matteolobello.palazzovenezia.ui.activity.HomeActivity"
+            android:name="it.matteolobello.palazzovenezia.ui.activity.HomeActivity"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.matteolobello.palazzovenezia.ui.activity.PaintingActivity"
+            android:name="it.matteolobello.palazzovenezia.ui.activity.PaintingActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.matteolobello.palazzovenezia.ui.activity.FullscreenPaintingActivity"
+            android:name="it.matteolobello.palazzovenezia.ui.activity.FullscreenPaintingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name="com.matteolobello.palazzovenezia.ui.activity.QRCodeActivity"
+            android:name="it.matteolobello.palazzovenezia.ui.activity.QRCodeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
-        <service android:name="com.matteolobello.palazzovenezia.data.service.AppRemovedFromRecentAppsListDetectorService" />
+        <service android:name="it.matteolobello.palazzovenezia.data.service.AppRemovedFromRecentAppsListDetectorService" />
     </application>
 
 </manifest>
