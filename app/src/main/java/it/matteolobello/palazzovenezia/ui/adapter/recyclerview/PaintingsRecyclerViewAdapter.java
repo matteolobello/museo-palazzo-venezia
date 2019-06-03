@@ -12,15 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.florent37.materialimageloading.MaterialImageLoading;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
+
 import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import it.matteolobello.palazzovenezia.data.model.Painting;
 import it.matteolobello.palazzovenezia.ui.activity.PaintingActivity;
-
-import java.util.ArrayList;
 
 public class PaintingsRecyclerViewAdapter extends RecyclerView.Adapter<PaintingsRecyclerViewAdapter.ViewHolder> {
 
@@ -51,7 +51,6 @@ public class PaintingsRecyclerViewAdapter extends RecyclerView.Adapter<Paintings
         final ImageView paintingImageView = holder.getPaintingImageView();
 
         AssetImageSetter.setImageByPaintingId(paintingImageView, painting.getId());
-        MaterialImageLoading.animate(paintingImageView).setDuration(position * 300).start();
 
         final View.OnClickListener onPaintingClickListener = new View.OnClickListener() {
             @Override

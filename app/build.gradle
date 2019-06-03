@@ -18,23 +18,17 @@ android {
         }
     }
     repositories {
-        maven {
-            url "https://jitpack.io"
-        }
-
-        maven {
-            url "https://maven.google.com"
-        }
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.google.com" }
     }
 }
 
 dependencies {
     implementation "androidx.appcompat:appcompat:1.1.0-alpha05"
     implementation "androidx.recyclerview:recyclerview:1.1.0-alpha05"
-    implementation "com.google.android.material:material:1.1.0-alpha06"
+    implementation "com.google.android.material:material:1.1.0-alpha07"
     implementation "com.github.fafaldo:fab-toolbar:1.2.0"
     implementation "com.github.alxrm:youtube-play-icon:0.9"
-    implementation "com.github.florent37:materialimageloading:1.0.2"
     implementation "com.github.chrisbanes:PhotoView:2.0.0"
     implementation "me.dm7.barcodescanner:zxing:1.9.8"
     implementation "com.minimize.library:seekbar-compat:0.2.5"
