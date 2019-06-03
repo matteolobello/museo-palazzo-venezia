@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.matteolobello.palazzovenezia.R;
+import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.ui.activity.IntroductionActivity;
 import it.matteolobello.palazzovenezia.util.SystemBarsUtil;
 

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.florent37.materialimageloading.MaterialImageLoading;
 import com.google.android.material.snackbar.Snackbar;
-import com.matteolobello.palazzovenezia.R;
+import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import it.matteolobello.palazzovenezia.data.model.Painting;

@@ -17,7 +17,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.matteolobello.palazzovenezia.R;
+
+import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import it.matteolobello.palazzovenezia.ui.adapter.viewpager.HomeViewPagerAdapter;
 import it.matteolobello.palazzovenezia.ui.view.MaterialDesignViewPager;

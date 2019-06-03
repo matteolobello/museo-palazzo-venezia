@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matteolobello.palazzovenezia.R;
+import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.asset.AssetPaintingsGenerator;
 import it.matteolobello.palazzovenezia.ui.adapter.recyclerview.SearchRecyclerViewAdapter;
 

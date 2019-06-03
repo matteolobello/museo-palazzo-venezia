@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import com.matteolobello.palazzovenezia.R;
+import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.asset.AssetPaintingsGenerator;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import it.matteolobello.palazzovenezia.ui.adapter.viewpager.IntroductionViewPagerAdapter;

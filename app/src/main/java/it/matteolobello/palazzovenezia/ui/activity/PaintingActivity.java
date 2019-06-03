@@ -38,7 +38,7 @@ import androidx.core.widget.NestedScrollView;
 import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.matteolobello.palazzovenezia.R;
+import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import it.matteolobello.palazzovenezia.data.asset.AssetSoundManager;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;

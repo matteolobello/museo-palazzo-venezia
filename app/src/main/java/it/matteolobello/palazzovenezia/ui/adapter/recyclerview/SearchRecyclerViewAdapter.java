@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matteolobello.palazzovenezia.R;
+import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import it.matteolobello.palazzovenezia.data.model.Painting;

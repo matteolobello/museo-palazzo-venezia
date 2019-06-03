@@ -11,7 +11,7 @@ import android.view.WindowManager;
 
 import androidx.core.content.ContextCompat;
 
-import com.matteolobello.palazzovenezia.R;
+import it.matteolobello.palazzovenezia.R;
 
 public class SystemBarsUtil {
 
