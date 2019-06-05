@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#B71C1C</color>
-    <color name="colorPrimaryDark">#7A1313</color>
-    <color name="colorAccent">#FFC107</color>
-    <color name="colorAccentDark">#FFA000</color>
+    <color name="colorPrimary">#121212</color>
+    <color name="colorPrimaryDark">#121212</color>
+    <color name="colorAccent">#121212</color>
+    <color name="colorAccentDark">#000000</color>
 
     <color name="launchScreenSystemBarsColor">#D3D3D3</color>
     <color name="primaryTextColor">#212121</color>

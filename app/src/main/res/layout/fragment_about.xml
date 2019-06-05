@@ -1,273 +1,588 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingBottom="46dp">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/about_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="42dp"
+            android:gravity="center"
+            android:text="@string/about_text"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:id="@+id/matteo_lobello_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_matteo_lobello"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/matteo_lobello" />
 
             <TextView
-                android:id="@+id/about_text_view"
-                android:layout_width="match_parent"
+                android:id="@+id/name_surname_matteo_lobello"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_matteo_lobello"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="42dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="42dp"
-                android:gravity="center"
-                android:text="@string/about_text"
-                android:textColor="@android:color/black"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_matteo_lobello"
+                android:text="Matteo Lobello"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="18sp" />
 
-            <RelativeLayout
-                android:id="@+id/matteo_wrapper"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@+id/about_text_view"
-                android:layout_alignParentStart="true"
-                android:foreground="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:id="@+id/profile_pic_matteo"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/matteo" />
-
-                <TextView
-                    android:id="@+id/name_surname_matteo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/profile_pic_matteo"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_toEndOf="@+id/profile_pic_matteo"
-                    android:text="Matteo Lobello"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/role_matteo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/name_surname_matteo"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_toEndOf="@id/profile_pic_matteo"
-                    android:text="Developer"
-                    android:textColor="@color/secondaryTextColor" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/andrea_wrapper"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@id/matteo_wrapper"
-                android:foreground="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:id="@+id/profile_pic_andrea"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/andrea" />
-
-                <TextView
-                    android:id="@+id/name_surname_andrea"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/profile_pic_andrea"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_toEndOf="@+id/profile_pic_andrea"
-                    android:text="Andrea Carosio"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/role_andrea"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/name_surname_andrea"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_toEndOf="@id/profile_pic_andrea"
-                    android:text="Audio Editor"
-                    android:textColor="@color/secondaryTextColor" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/alessandro_wrapper"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@+id/andrea_wrapper"
-                android:foreground="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:id="@+id/profile_pic_alessandro"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/alessandro" />
-
-                <TextView
-                    android:id="@+id/name_surname_alessandro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/profile_pic_alessandro"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_toEndOf="@+id/profile_pic_alessandro"
-                    android:text="Alessandro Currenti"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/role_alessandro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/name_surname_alessandro"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_toEndOf="@id/profile_pic_alessandro"
-                    android:text="UI Helper"
-                    android:textColor="@color/secondaryTextColor" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/federico_wrapper"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@+id/alessandro_wrapper"
-                android:foreground="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:id="@+id/profile_pic_federico"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/federico" />
-
-                <TextView
-                    android:id="@+id/name_surname_federico"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/profile_pic_federico"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_toEndOf="@+id/profile_pic_federico"
-                    android:text="Federico Fiorio"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/role_federico"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/name_surname_federico"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_toEndOf="@id/profile_pic_federico"
-                    android:text="Audio Assistant"
-                    android:textColor="@color/secondaryTextColor" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rolando_wrapper"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@+id/federico_wrapper"
-                android:foreground="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:id="@+id/profile_pic_rolando"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/rolando" />
-
-                <TextView
-                    android:id="@+id/name_surname_rolando"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/profile_pic_rolando"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_toEndOf="@+id/profile_pic_rolando"
-                    android:text="Rolando Gonzalez"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/role_rolando"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/name_surname_rolando"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_toEndOf="@id/profile_pic_rolando"
-                    android:text="Media Assistant"
-                    android:textColor="@color/secondaryTextColor" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/leonardo_wrapper"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@id/rolando_wrapper"
-                android:foreground="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:id="@+id/profile_pic_leonardo"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/leonardo" />
-
-                <TextView
-                    android:id="@+id/name_surname_leonardo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/profile_pic_leonardo"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_toEndOf="@+id/profile_pic_leonardo"
-                    android:text="Leonardo Lancellotti"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/role_leonardo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/name_surname_leonardo"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_toEndOf="@id/profile_pic_leonardo"
-                    android:text="Data Manager"
-                    android:textColor="@color/secondaryTextColor" />
-
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/role_matteo_lobello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_matteo_lobello"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_matteo_lobello"
+                android:text="Developer"
+                android:textColor="@color/secondaryTextColor" />
 
         </RelativeLayout>
 
-    </ScrollView>
+        <RelativeLayout
+            android:id="@+id/andrea_carosio_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-</RelativeLayout>
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_andrea_carosio"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/andrea_carosio" />
+
+            <TextView
+                android:id="@+id/name_surname_andrea_carosio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_andrea_carosio"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_andrea_carosio"
+                android:text="Andrea Carosio"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_andrea_carosio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_andrea_carosio"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_andrea_carosio"
+                android:text="Audio Editor"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/alessandro_currenti_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_alessandro_currenti"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/alessandro_currenti" />
+
+            <TextView
+                android:id="@+id/name_surname_alessandro_currenti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_alessandro_currenti"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_alessandro_currenti"
+                android:text="Alessandro Currenti"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_alessandro_currenti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_alessandro_currenti"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_alessandro_currenti"
+                android:text="Designer"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/federico_fiorio_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_federico_fiorio"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/federico_fiorio" />
+
+            <TextView
+                android:id="@+id/name_surname_federico_fiorio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_federico_fiorio"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_federico_fiorio"
+                android:text="Federico Fiorio"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_federico_fiorio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_federico_fiorio"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_federico_fiorio"
+                android:text="Data Manager"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rolando_gonzalez_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_rolando_gonzalez"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/rolando_gonzalez" />
+
+            <TextView
+                android:id="@+id/name_surname_rolando_gonzalez"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_rolando_gonzalez"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_rolando_gonzalez"
+                android:text="Rolando Gonzalez"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_rolando_gonzalez"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_rolando_gonzalez"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_rolando_gonzalez"
+                android:text="Media Assistant"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/leonardo_lancellotti_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_leonardo_lancellotti"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/leonardo_lancellotti" />
+
+            <TextView
+                android:id="@+id/name_surname_leonardo_lancellotti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_leonardo_lancellotti"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_leonardo_lancellotti"
+                android:text="Leonardo Lancellotti"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_leonardo_lancellotti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_leonardo_lancellotti"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_leonardo_lancellotti"
+                android:text="Data Manager"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/benedetta_serra_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_benedetta_serra"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/benedetta_serra" />
+
+            <TextView
+                android:id="@+id/name_surname_benedetta_serra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_benedetta_serra"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_benedetta_serra"
+                android:text="Benedetta Serra"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_benedetta_serra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_benedetta_serra"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_benedetta_serra"
+                android:text="English Speaker"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/sofia_marica_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_sofia_marica"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/sofia_marica" />
+
+            <TextView
+                android:id="@+id/name_surname_sofia_marica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_sofia_marica"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_sofia_marica"
+                android:text="Sofia Marica"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_sofia_marica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_sofia_marica"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_sofia_marica"
+                android:text="English Speaker"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/martina_cadang_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_martina_cadang"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/martina_cadang" />
+
+            <TextView
+                android:id="@+id/name_surname_martina_cadang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_martina_cadang"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_martina_cadang"
+                android:text="Martina Cadang"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_martina_cadang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_martina_cadang"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_martina_cadang"
+                android:text="English Speaker"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/silvia_di_martino_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_silvia_di_martino"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/silvia_di_martino" />
+
+            <TextView
+                android:id="@+id/name_surname_silvia_di_martino"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_silvia_di_martino"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_silvia_di_martino"
+                android:text="Silvia Di Martino"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_silvia_di_martino"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_silvia_di_martino"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_silvia_di_martino"
+                android:text="Spanish Speaker"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/susanna_pelle_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_susanna_pelle"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/susanna_pelle" />
+
+            <TextView
+                android:id="@+id/name_surname_susanna_pelle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_susanna_pelle"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_susanna_pelle"
+                android:text="Susanna Pelle"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_susanna_pelle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_susanna_pelle"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_susanna_pelle"
+                android:text="Spanish Speaker"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/federico_prosperi_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_federico_prosperi"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/federico_prosperi" />
+
+            <TextView
+                android:id="@+id/name_surname_federico_prosperi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_federico_prosperi"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_federico_prosperi"
+                android:text="Federico Prosperi"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_federico_prosperi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_federico_prosperi"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_federico_prosperi"
+                android:text="Italian Speaker"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/elisa_pattuglia_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_elisa_pattuglia"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/elisa_pattuglia" />
+
+            <TextView
+                android:id="@+id/name_surname_elisa_pattuglia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_elisa_pattuglia"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_elisa_pattuglia"
+                android:text="Elisa Pattuglia"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_elisa_pattuglia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_elisa_pattuglia"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_elisa_pattuglia"
+                android:text="Italian Speaker"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/alessia_luongo_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_pic_alessia_luongo"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/alessia_luongo" />
+
+            <TextView
+                android:id="@+id/name_surname_alessia_luongo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/profile_pic_alessia_luongo"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/profile_pic_alessia_luongo"
+                android:text="Alessia Luongo"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/role_alessia_luongo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_surname_alessia_luongo"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_alessia_luongo"
+                android:text="Italian Speaker"
+                android:textColor="@color/secondaryTextColor" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

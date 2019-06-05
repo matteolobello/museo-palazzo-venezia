@@ -108,7 +108,7 @@
                 android:layout_alignParentBottom="true">
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@id/fabtoolbar_fab"
+                    android:id="@+id/fabtoolbar_fab"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -142,7 +142,10 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="32dp"
-                    android:layout_toEndOf="@id/play_pause" />
+                    android:layout_toEndOf="@id/play_pause"
+                    app:progressBackgroundColor="@android:color/white"
+                    app:progressColor="@android:color/white"
+                    app:thumbColor="@android:color/white" />
 
             </RelativeLayout>
 

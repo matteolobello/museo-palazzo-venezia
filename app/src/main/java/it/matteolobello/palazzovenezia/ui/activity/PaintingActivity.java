@@ -210,9 +210,9 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
 
         mPlayIconView.setOnClickListener(mPlayPauseClickListener);
 
-        mSeekBar.setProgressColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccentDark));
+        mSeekBar.setProgressColor(Color.parseColor("#CCCCCC"));
         mSeekBar.setProgressBackgroundColor(ContextCompat.getColor(getApplicationContext(), android.R.color.white));
-        mSeekBar.setThumbColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccentDark));
+        mSeekBar.setThumbColor(ContextCompat.getColor(getApplicationContext(), android.R.color.white));
         mSeekBar.setMax(100);
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
