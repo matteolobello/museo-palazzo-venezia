@@ -50,6 +50,7 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.sofia_marica_wrapper).setOnClickListener(this);
         view.findViewById(R.id.martina_cadang_wrapper).setOnClickListener(this);
         view.findViewById(R.id.silvia_di_martino_wrapper).setOnClickListener(this);
+        view.findViewById(R.id.susanna_pelle_wrapper).setOnClickListener(this);
         view.findViewById(R.id.federico_prosperi_wrapper).setOnClickListener(this);
         view.findViewById(R.id.elisa_pattuglia_wrapper).setOnClickListener(this);
         view.findViewById(R.id.alessia_luongo_wrapper).setOnClickListener(this);
