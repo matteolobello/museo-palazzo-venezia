@@ -17,8 +17,7 @@
     <string name="home">Home</string>
     <string name="scan">Scan</string>
     <string name="search_description">Start searching for an artwork by tapping on \"Search\" and entering the name of it</string>
-    <string name="home_title">Palazzo Venezia\nMuseum</string>
-    <string name="info">Info</string>
-    <string name="information_technology">Information Technology</string>
-    <string name="linguistic">Linguistic</string>
+    <string name="home_big_title">Palazzo Venezia\nMuseum</string>
+
+    <string name="info" translatable="false">Info</string>
 </resources>

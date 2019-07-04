@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="com.matteolobello.palazzovenezia.it.matteolobello.palazzovenezia.ui.activity.HomeActivity">
+    tools:context="it.matteolobello.palazzovenezia.ui.activity.HomeActivity">
 
     <it.matteolobello.palazzovenezia.ui.view.MaterialDesignViewPager
         android:id="@+id/home_view_pager"

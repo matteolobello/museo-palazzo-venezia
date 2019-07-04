@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.matteolobello.palazzovenezia.it.matteolobello.palazzovenezia.ui.activity.IntroductionActivity">
+    tools:context="it.matteolobello.palazzovenezia.ui.activity.IntroductionActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/introduction_view_pager"
