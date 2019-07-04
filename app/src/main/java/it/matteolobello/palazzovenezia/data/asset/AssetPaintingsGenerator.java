@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.widget.Toast;
 
-import it.matteolobello.palazzovenezia.data.model.Painting;
-import it.matteolobello.palazzovenezia.data.qrcode.QRCodeScanning;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
+
+import it.matteolobello.palazzovenezia.data.model.Painting;
+import it.matteolobello.palazzovenezia.data.qrcode.QRCodeScanning;
 
 public class AssetPaintingsGenerator {
 

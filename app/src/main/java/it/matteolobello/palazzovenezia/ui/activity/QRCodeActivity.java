@@ -11,16 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.zxing.Result;
+
+import java.io.File;
+import java.util.Locale;
+
 import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.asset.AssetFileReader;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import it.matteolobello.palazzovenezia.data.model.Painting;
 import it.matteolobello.palazzovenezia.data.qrcode.QRCodeScanning;
 import it.matteolobello.palazzovenezia.util.SystemBarsUtil;
-
-import java.io.File;
-import java.util.Locale;
-
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class QRCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {

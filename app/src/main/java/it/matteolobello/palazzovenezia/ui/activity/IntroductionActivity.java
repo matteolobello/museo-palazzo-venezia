@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import com.rd.PageIndicatorView;
+
 import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.asset.AssetPaintingsGenerator;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;
@@ -20,7 +22,6 @@ import it.matteolobello.palazzovenezia.ui.adapter.viewpager.IntroductionViewPage
 import it.matteolobello.palazzovenezia.ui.fragment.introduction.QRCodeIntroductionFragment;
 import it.matteolobello.palazzovenezia.util.PermissionUtil;
 import it.matteolobello.palazzovenezia.util.SystemBarsUtil;
-import com.rd.PageIndicatorView;
 
 public class IntroductionActivity extends AppCompatActivity {
 

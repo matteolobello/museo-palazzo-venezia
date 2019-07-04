@@ -38,6 +38,8 @@ import androidx.core.widget.NestedScrollView;
 import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import app.minimize.com.seek_bar_compat.SeekBarCompat;
 import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import it.matteolobello.palazzovenezia.data.asset.AssetSoundManager;
@@ -46,8 +48,6 @@ import it.matteolobello.palazzovenezia.data.model.Painting;
 import it.matteolobello.palazzovenezia.data.service.AppRemovedFromRecentAppsListDetectorService;
 import it.matteolobello.palazzovenezia.util.DpPxUtil;
 import it.matteolobello.palazzovenezia.util.SystemBarsUtil;
-
-import app.minimize.com.seek_bar_compat.SeekBarCompat;
 import rm.com.youtubeplayicon.PlayIconDrawable;
 import rm.com.youtubeplayicon.PlayIconView;
 

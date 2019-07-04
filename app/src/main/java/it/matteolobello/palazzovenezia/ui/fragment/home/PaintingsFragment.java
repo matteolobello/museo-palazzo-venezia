@@ -70,11 +70,10 @@ public class PaintingsFragment extends Fragment {
             @Override
             public void onScrollChanged() {
                 float scrollY = mNestedScrollView.getScrollY();
-                float percentage = scrollY == 0 ? 0 :
-                        scrollY * 100 / (mTitleTextView.getHeight() - DpPxUtil.convertDpToPixel(16));
-                float newAlpha = 1 - (percentage / 100);
+                float scrollProgressPercentage = scrollY == 0 ? 0 :
+                        scrollY * 100 / (mTitleTextView.getHeight() - DpPxUtil.convertDpToPixel(20));
 
-                if (newAlpha <= 0) {
+                if (scrollProgressPercentage >= 100) {
                     if (!isToolbarVisible) {
                         mToolbarView.animate()
                                 .translationY(0)

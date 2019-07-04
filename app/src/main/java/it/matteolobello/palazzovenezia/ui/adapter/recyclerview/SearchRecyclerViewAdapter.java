@@ -14,14 +14,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yayandroid.parallaxrecyclerview.ParallaxViewHolder;
+
+import java.util.ArrayList;
+
 import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import it.matteolobello.palazzovenezia.data.model.Painting;
 import it.matteolobello.palazzovenezia.ui.activity.PaintingActivity;
-import com.yayandroid.parallaxrecyclerview.ParallaxViewHolder;
-
-import java.util.ArrayList;
 
 public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder> {
 
