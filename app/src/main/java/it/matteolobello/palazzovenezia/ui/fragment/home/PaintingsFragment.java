@@ -1,11 +1,13 @@
 package it.matteolobello.palazzovenezia.ui.fragment.home;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,19 +17,24 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import eightbitlab.com.blurview.BlurView;
+import eightbitlab.com.blurview.RenderScriptBlur;
 import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import it.matteolobello.palazzovenezia.data.model.Painting;
+import it.matteolobello.palazzovenezia.ui.activity.HomeActivity;
 import it.matteolobello.palazzovenezia.ui.adapter.recyclerview.PaintingsRecyclerViewAdapter;
 import it.matteolobello.palazzovenezia.ui.view.recyclerview.PaintingsRecyclerViewItemDecoration;
 import it.matteolobello.palazzovenezia.util.DpPxUtil;
+import it.matteolobello.palazzovenezia.util.SystemBarsUtil;
 
 public class PaintingsFragment extends Fragment {
 
     private NestedScrollView mNestedScrollView;
-    private View mToolbarView;
+    private BlurView mToolbarView;
     private TextView mTitleTextView;
     private RecyclerView mRecyclerView;
+    private View mPaddingBottomView;
 
     @Nullable
     @Override
@@ -43,11 +50,34 @@ public class PaintingsFragment extends Fragment {
         mToolbarView = view.findViewById(R.id.toolbar);
         mTitleTextView = view.findViewById(R.id.paintings_title_text_view);
         mRecyclerView = view.findViewById(R.id.paintings_recycler_view);
+        mPaddingBottomView = view.findViewById(R.id.scroll_view_padding_bottom_view);
 
         Activity activity = getActivity();
         if (activity == null) {
             return;
         }
+
+        Drawable windowBackground = view.getBackground();
+        mToolbarView.setPadding(0, SystemBarsUtil.getStatusBarHeight(activity), 0, 0);
+        mToolbarView.getLayoutParams().height = DpPxUtil.convertDpToPixel(56) + SystemBarsUtil.getStatusBarHeight(activity);
+        mToolbarView.setupWith((ViewGroup) view)
+                .setFrameClearDrawable(windowBackground)
+                .setBlurAlgorithm(new RenderScriptBlur(getContext()))
+                .setBlurRadius(20f)
+                .setOverlayColor(HomeActivity.BLUR_OVERLAY_COLOR)
+                .setHasFixedTransformationMatrix(true);
+        mToolbarView.animate()
+                .translationY(-mToolbarView.getHeight())
+                .alpha(0.0f)
+                .setDuration(0)
+                .start();
+
+        ((LinearLayout.LayoutParams) mTitleTextView.getLayoutParams()).topMargin =
+                SystemBarsUtil.getStatusBarHeight(activity);
+
+        ((LinearLayout.LayoutParams) mPaddingBottomView.getLayoutParams()).height =
+                SystemBarsUtil.getNavigationBarHeight(activity)
+                        + DpPxUtil.convertDpToPixel(56);
 
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         mRecyclerView.setHasFixedSize(true);
@@ -71,7 +101,9 @@ public class PaintingsFragment extends Fragment {
             public void onScrollChanged() {
                 float scrollY = mNestedScrollView.getScrollY();
                 float scrollProgressPercentage = scrollY == 0 ? 0 :
-                        scrollY * 100 / (mTitleTextView.getHeight() - DpPxUtil.convertDpToPixel(20));
+                        scrollY * 100 / DpPxUtil.convertDpToPixel(20);
+
+                mTitleTextView.setAlpha(1 - (scrollProgressPercentage / 100));
 
                 if (scrollProgressPercentage >= 100) {
                     if (!isToolbarVisible) {

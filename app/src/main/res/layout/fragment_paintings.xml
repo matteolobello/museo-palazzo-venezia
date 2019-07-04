@@ -3,15 +3,14 @@
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
-    <FrameLayout
+    <eightbitlab.com.blurview.BlurView
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@android:color/white"
-        android:elevation="999dp"
-        android:translationY="-56dp">
+        android:elevation="999dp">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -24,13 +23,7 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:alpha="0.26"
-            android:background="@android:color/black" />
-    </FrameLayout>
+    </eightbitlab.com.blurview.BlurView>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll_view"
@@ -62,6 +55,11 @@
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:paddingBottom="4dp" />
+
+            <View
+                android:id="@+id/scroll_view_padding_bottom_view"
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
 
         </LinearLayout>
 

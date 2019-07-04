@@ -120,6 +120,7 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
 
         SystemBarsUtil.setNavigationBarColor(this, ContextCompat.getColor(this, android.R.color.white), false);
         SystemBarsUtil.setFullyTransparentStatusBar(this);
+        SystemBarsUtil.setDarkNavigationBarIcons(this, true);
 
         if (!SystemBarsUtil.hasNavigationBar(this)) {
             findViewById(R.id.navigation_bar_divider).setVisibility(View.GONE);
@@ -156,13 +157,11 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ActivityManager.TaskDescription taskDescription =
-                    new ActivityManager.TaskDescription(mPainting.getName(),
-                            BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher),
-                            ContextCompat.getColor(this, R.color.colorPrimary));
-            setTaskDescription(taskDescription);
-        }
+        ActivityManager.TaskDescription taskDescription =
+                new ActivityManager.TaskDescription(mPainting.getName(),
+                        BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher),
+                        ContextCompat.getColor(this, R.color.colorPrimary));
+        setTaskDescription(taskDescription);
 
         Drawable toolbarBackArrowDrawable = mToolbar.getNavigationIcon();
         if (toolbarBackArrowDrawable != null) {
@@ -195,6 +194,7 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
 
                 SystemBarsUtil.setNavigationBarColor(PaintingActivity.this,
                         ContextCompat.getColor(getApplicationContext(), R.color.colorAccentDark), true);
+                SystemBarsUtil.setDarkNavigationBarIcons(PaintingActivity.this, false);
                 mFabToolbarLayout.show();
 
                 if (SystemBarsUtil.hasNavigationBar(PaintingActivity.this)) {
@@ -316,8 +316,9 @@ public class PaintingActivity extends AppCompatActivity implements MediaPlayer.O
 
             changeNestedScrollViewPadding(0);
 
-            SystemBarsUtil.setNavigationBarColor(PaintingActivity.this,
+            SystemBarsUtil.setNavigationBarColor(this,
                     ContextCompat.getColor(getApplicationContext(), android.R.color.white), true);
+            SystemBarsUtil.setDarkNavigationBarIcons(this, true);
 
             if (SystemBarsUtil.hasNavigationBar(this)) {
                 findViewById(R.id.navigation_bar_divider).animate()

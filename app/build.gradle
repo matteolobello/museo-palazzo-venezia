@@ -1,11 +1,11 @@
 apply plugin: "com.android.application"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "it.matteolobello.palazzovenezia"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -24,8 +24,8 @@ android {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:1.1.0-alpha05"
-    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha05"
+    implementation "androidx.appcompat:appcompat:1.1.0-rc01"
+    implementation "androidx.recyclerview:recyclerview:1.1.0-beta01"
     implementation "com.google.android.material:material:1.1.0-alpha07"
     implementation "com.github.fafaldo:fab-toolbar:1.2.0"
     implementation "com.github.alxrm:youtube-play-icon:0.9"
@@ -35,4 +35,5 @@ dependencies {
     implementation "com.romandanylyk:pageindicatorview:1.0.3@aar"
     implementation "com.mikhaellopez:circularimageview:3.2.0"
     implementation "com.yayandroid:ParallaxRecyclerView:1.1"
+    implementation "com.eightbitlab:blurview:1.6.1"
 }

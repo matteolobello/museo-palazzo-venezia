@@ -1,17 +1,23 @@
 package it.matteolobello.palazzovenezia.ui.fragment.home;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import eightbitlab.com.blurview.BlurView;
+import eightbitlab.com.blurview.RenderScriptBlur;
 import it.matteolobello.palazzovenezia.R;
+import it.matteolobello.palazzovenezia.util.DpPxUtil;
+import it.matteolobello.palazzovenezia.util.SystemBarsUtil;
 
 public class AboutFragment extends Fragment implements View.OnClickListener {
 
@@ -54,6 +60,23 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.federico_prosperi_wrapper).setOnClickListener(this);
         view.findViewById(R.id.elisa_pattuglia_wrapper).setOnClickListener(this);
         view.findViewById(R.id.alessia_luongo_wrapper).setOnClickListener(this);
+
+        ((LinearLayout.LayoutParams) view.findViewById(R.id.scroll_view_padding_bottom_view).getLayoutParams()).height =
+                SystemBarsUtil.getNavigationBarHeight(getContext())
+                        + DpPxUtil.convertDpToPixel(56);
+
+        ((LinearLayout.LayoutParams) view.findViewById(R.id.about_text_view).getLayoutParams()).height =
+                SystemBarsUtil.getNavigationBarHeight(getContext())
+                        + DpPxUtil.convertDpToPixel(56);
+
+        final BlurView blurView = view.findViewById(R.id.blur_view);
+        blurView.getLayoutParams().height = SystemBarsUtil.getStatusBarHeight(getContext());
+        blurView.setupWith((ViewGroup) view)
+                .setFrameClearDrawable(view.getBackground())
+                .setBlurAlgorithm(new RenderScriptBlur(getContext()))
+                .setBlurRadius(20f)
+                .setOverlayColor(Color.argb(60, 255, 255, 255))
+                .setHasFixedTransformationMatrix(true);
     }
 
     @Override

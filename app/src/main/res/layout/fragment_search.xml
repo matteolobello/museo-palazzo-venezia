@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/search_wrapper"
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/search_blur_view"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@android:color/white"
+        android:elevation="999dp"
         android:minHeight="?attr/actionBarSize"
-        android:padding="8dp"
-        app:cardElevation="8dp"
         app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
         <LinearLayout
@@ -19,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="24dp"
@@ -28,7 +27,7 @@
                 app:srcCompat="@drawable/ic_search"
                 app:tint="@android:color/black" />
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/search_view"
                 android:layout_width="0dp"
                 android:layout_height="?attr/actionBarSize"
@@ -57,20 +56,51 @@
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:alpha="0.16"
+            android:background="@android:color/black" />
 
-    <com.yayandroid.parallaxrecyclerview.ParallaxRecyclerView
-        android:id="@+id/search_rv"
+    </eightbitlab.com.blurview.BlurView>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/search_output_nested_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/search_wrapper"
-        android:visibility="gone" />
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/scroll_view_padding_top_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp" />
+
+            <com.yayandroid.parallaxrecyclerview.ParallaxRecyclerView
+                android:id="@+id/search_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <View
+                android:id="@+id/scroll_view_padding_bottom_view"
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <RelativeLayout
         android:id="@+id/empty_result_wrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/search_wrapper">
+        android:layout_below="@+id/search_blur_view">
 
         <LinearLayout
             android:layout_width="wrap_content"

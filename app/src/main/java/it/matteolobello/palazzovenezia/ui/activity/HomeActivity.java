@@ -5,19 +5,24 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.core.os.BuildCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import eightbitlab.com.blurview.BlurView;
+import eightbitlab.com.blurview.RenderScriptBlur;
 import it.matteolobello.palazzovenezia.R;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import it.matteolobello.palazzovenezia.ui.adapter.viewpager.HomeViewPagerAdapter;
@@ -27,10 +32,13 @@ import it.matteolobello.palazzovenezia.util.SystemBarsUtil;
 
 public class HomeActivity extends AppCompatActivity {
 
+    public static final int BLUR_OVERLAY_COLOR = Color.argb(175, 255, 255, 255);
+
     private static final String SHORTCUT_ACTION_SEARCH = "search";
     private static final String SHORTCUT_ACTION_MAP = "map";
 
     private MaterialDesignViewPager mViewPager;
+    private BlurView mBlurView;
     private BottomNavigationView mBottomNavigationView;
 
     private HomeViewPagerAdapter mViewPagerAdapter;
@@ -42,15 +50,30 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        SystemBarsUtil.setNavigationBarColor(this, ContextCompat.getColor(this, android.R.color.white), false);
-        SystemBarsUtil.setStatusBarColor(this, ContextCompat.getColor(this, android.R.color.white), false);
-
-        if (!SystemBarsUtil.hasNavigationBar(this)) {
-            findViewById(R.id.navigation_bar_divider).setVisibility(View.GONE);
-        }
+        SystemBarsUtil.setNoLimitsSystemBars(this);
+        SystemBarsUtil.setDarkStatusBarIcons(this, true);
+        SystemBarsUtil.setDarkNavigationBarIcons(this, true);
 
         mViewPager = findViewById(R.id.home_view_pager);
+        mBlurView = findViewById(R.id.blur_view);
         mBottomNavigationView = findViewById(R.id.bottom_navigation_view);
+
+        if (BuildCompat.isAtLeastO()) {
+            mBottomNavigationView.setBackgroundColor(Color.TRANSPARENT);
+            mBottomNavigationView.setElevation(0f);
+
+            mBlurView.setPadding(0, 0, 0, SystemBarsUtil.getNavigationBarHeight(HomeActivity.this));
+
+            View decorView = getWindow().getDecorView();
+            ViewGroup rootView = decorView.findViewById(android.R.id.content);
+            Drawable windowBackground = decorView.getBackground();
+            mBlurView.setupWith(rootView)
+                    .setFrameClearDrawable(windowBackground)
+                    .setBlurAlgorithm(new RenderScriptBlur(this))
+                    .setBlurRadius(20f)
+                    .setOverlayColor(BLUR_OVERLAY_COLOR)
+                    .setHasFixedTransformationMatrix(true);
+        }
 
         mViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager());
 

@@ -21,6 +21,8 @@ import it.matteolobello.palazzovenezia.data.asset.AssetImageSetter;
 import it.matteolobello.palazzovenezia.data.bundle.BundleKeys;
 import it.matteolobello.palazzovenezia.data.model.Painting;
 import it.matteolobello.palazzovenezia.ui.activity.PaintingActivity;
+import it.matteolobello.palazzovenezia.util.DpPxUtil;
+import it.matteolobello.palazzovenezia.util.SystemBarsUtil;
 
 public class PaintingsRecyclerViewAdapter extends RecyclerView.Adapter<PaintingsRecyclerViewAdapter.ViewHolder> {
 
@@ -65,15 +67,18 @@ public class PaintingsRecyclerViewAdapter extends RecyclerView.Adapter<Paintings
             @Override
             public boolean onLongClick(View view) {
                 if (mPaintingsFragmentRootView != null) {
-                    Snackbar.make(mPaintingsFragmentRootView, painting.getName(), Snackbar.LENGTH_SHORT)
+                    Snackbar snackbar = Snackbar.make(mPaintingsFragmentRootView, painting.getName(), Snackbar.LENGTH_SHORT)
                             .setAction(R.string.info, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     onPaintingClickListener.onClick(view);
                                 }
                             })
-                            .setActionTextColor(Color.WHITE)
-                            .show();
+                            .setActionTextColor(Color.WHITE);
+                    snackbar.getView().setTranslationY(-(
+                            SystemBarsUtil.getNavigationBarHeight(mPaintingsFragmentRootView.getContext())
+                                    + DpPxUtil.convertDpToPixel(56)));
+                    snackbar.show();
                 } else {
                     Toast.makeText(view.getContext(), painting.getName(), Toast.LENGTH_SHORT).show();
                 }

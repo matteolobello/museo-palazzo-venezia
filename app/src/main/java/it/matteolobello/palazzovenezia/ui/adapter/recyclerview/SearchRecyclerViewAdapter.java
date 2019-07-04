@@ -91,6 +91,25 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
         return paintingsFound.size();
     }
 
+    public void setPaintings(ArrayList<Painting> paintings) {
+        mPaintingArrayList.clear();
+        mPaintingArrayList.addAll(paintings);
+        notifyDataSetChanged();
+    }
+
+    public void clear() {
+        mPaintingArrayList.clear();
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<Painting> getAllPaintings() {
+        return mAllPaintings;
+    }
+
+    public ArrayList<Painting> getShownPaintings() {
+        return mPaintingArrayList;
+    }
+
     class ViewHolder extends ParallaxViewHolder {
 
         private ImageView mPaintingImageView;

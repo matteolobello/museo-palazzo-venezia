@@ -1,7 +1,13 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blur_view"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:elevation="999dp" />
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/map_image_view"
@@ -9,4 +15,4 @@
         android:layout_height="match_parent"
         android:src="@drawable/map" />
 
-</RelativeLayout>
+</FrameLayout>

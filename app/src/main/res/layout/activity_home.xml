@@ -10,27 +10,25 @@
     <it.matteolobello.palazzovenezia.ui.view.MaterialDesignViewPager
         android:id="@+id/home_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation_view" />
+        android:layout_height="match_parent" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
-        style="@style/Widget.MaterialComponents.BottomNavigationView"
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blur_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/white"
-        app:itemIconTint="@android:color/black"
-        app:itemTextColor="@android:color/black"
-        app:menu="@menu/bottom_navigation_menu" />
+        android:layout_alignParentBottom="true">
 
-    <View
-        android:id="@+id/navigation_bar_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentBottom="true"
-        android:alpha="0.12"
-        android:background="@android:color/black"
-        android:elevation="999dp" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            style="@style/Widget.MaterialComponents.BottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/white"
+            app:itemIconTint="@android:color/black"
+            app:itemTextColor="@android:color/black"
+            app:menu="@menu/bottom_navigation_menu" />
+
+    </eightbitlab.com.blurview.BlurView>
 
 </RelativeLayout>

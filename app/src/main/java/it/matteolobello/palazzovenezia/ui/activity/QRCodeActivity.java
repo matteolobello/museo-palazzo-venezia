@@ -8,7 +8,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.google.zxing.Result;
 
@@ -35,8 +34,6 @@ public class QRCodeActivity extends AppCompatActivity implements ZXingScannerVie
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
 
-        SystemBarsUtil.setNavigationBarColor(this, ContextCompat.getColor(this, android.R.color.white), false);
-        SystemBarsUtil.setStatusBarColor(this, ContextCompat.getColor(this, android.R.color.white), false);
         SystemBarsUtil.goImmersive(this);
 
         ActionBar actionBar = getSupportActionBar();
