@@ -1,15 +1,6 @@
 # Museo Palazzo Venezia
 
-<table>
-  <tr>
-    <td>
-      <img src="https://imgur.com/CwF1b9W.png">
-    </td>
-    <td>
-       <img src="https://imgur.com/2HkkHZ2.png">
-    </td>
-  </tr>
-</table
+<img src="https://www.matteolobello.it/assets/img/projects/palazzo_venezia.jpg" width="350px">
 
 An app made for the Palazzo Venezia Museum in Rome.
 
